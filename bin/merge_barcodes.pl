@@ -11,7 +11,7 @@ while(<INb>)
     $barcode_num ++ ;
 }
 
-print "Total $barcode_num in whilte list of 10X is loaded !!!";
+print "Total $barcode_num in whilte list of 10X is loaded !!!\n";
 close(INb);
 
 $curr_barcode=1;
@@ -47,6 +47,6 @@ foreach my $key ( keys %bs ){
     }
 }
 
-print "Total $total pairs and used $used pairs  ";
+print "Total $total pairs and used $used pairs  \n";
 close(IN);
 close(OUT);

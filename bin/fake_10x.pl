@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-print "Merge stLFR reads into 10X format !\n read1 :  $ARGV[0] \n. read2 : $ARGV[1] \n map file : $ARGV[2]";
+print "Merge stLFR reads into 10X format !\n read1 :  $ARGV[0] \n. read2 : $ARGV[1] \n map file : $ARGV[2]\n";
 open IN3,$ARGV[2] ;
 $barcode_num=1;
 while(<IN3>)

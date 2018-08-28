@@ -1,27 +1,22 @@
 #
 # baisc input files
-#   example :
-#       PROJECT_NAME="Human"
-#       r1="CL100026175_L01_read_1.fq.gz CL100026175_L02_read_1.fq.gz CL100026179_L01_read_1.fq.gz CL100026179_L02_read_1.fq.gz"
-#       r2="CL100026175_L01_read_2.fq.gz CL100026175_L02_read_2.fq.gz CL100026179_L01_read_2.fq.gz CL100026179_L02_read_2.fq.gz"
-#
 #  MODIFY HERE FOR YOU PROJECT !!!
 #
 r1="../r1.fq.gz"
 r2="../r2.fq.gz"
 PROJECT_NAME="Human"
-
+THREADS=80
+MEMORY=100 #GB
 #
-# supernova path
-#   example :
-#       SUPERNOVA="/home/guolidong/software/supernova-2.0.1"
+# exec path
 #
 #  MODIFY HERE FOR YOU ENVIROMENT !!!
 #
 SUPERNOVA="/ldfssz1/ST_OCEAN/USER/guolidong/supernova-2.0.0/"
-
+SOAP_FILTER="/hwfssz1/ST_OCEAN/USER/guolidong/stLFR/data_pipeline/SOAPfilter_v2.2.1/SOAPfilter_v2.2"
+USE_FILTER="yes"
 #
-# file that generate in middle steps.
+# files that will be generated/needed .
 #       DO NOT MODIFY 
 # UNLESS YOU KNOW WHAT YOU ARE DOING.
 #
