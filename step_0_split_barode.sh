@@ -31,7 +31,7 @@ fi
 echo "split barcode ... "
 date
 $SCRIPT_PATH/bin/split_barcode.pl $SCRIPT_PATH/data/barcode.list  $R1 $R2 $SPLIT
-echi "done step 0 ..."
+echo "done step 0 ..."
 date
 
 

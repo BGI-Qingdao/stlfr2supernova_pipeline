@@ -8,9 +8,11 @@ while(<IN3>)
     chomp;
     my @pair =split(/\t/,$_);
     $map{$pair[0]}=$pair[1] ;
+    #print "$pair[0]\n";
 }
 close IN3;
 
+#print "____\n";
 open IN1,"gzip -dc $ARGV[0] | ";
 open IN2,"gzip -dc $ARGV[1] | ";
 open OUT,"| gzip > read-RA_si-TTCACGCG_lane-001-chunk-001.fastq.gz";
@@ -20,9 +22,11 @@ $N=0;
 while(<IN1>)
 {
     chomp;
+    # head looks like : @CL200051332L1C001R001_0#1335_550_1232/2        1       1
     my @line=split(/\t/, $_);
-    my @name=split(/\#/, line[0]);
-    if( ! exists($map{$name[1]} ) )
+    my @name1=split(/\#/, $line[0]);
+    my @name=split(/\//, $name1[1]);
+    if( ! exists($map{$name[0]} ) )
     {
         $S=<IN1>;
         $S=<IN1>;
@@ -32,12 +36,12 @@ while(<IN1>)
         $S=<IN2>;
         $S=<IN2>;
         $S=<IN2>;
-
+        #print "$name[0]\n";
         next;
     }
     else
     {
-        $barcode = $map{$name[1]};
+        $barcode = $map{$name[0]};
     }
 
     $N++;

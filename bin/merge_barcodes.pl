@@ -19,7 +19,7 @@ open IN,"<$ARGV[0]";
 open OUT,">$ARGV[2]";
 $line=0;
 $total=0;
-$small=$ARGV[3]
+$small=$ARGV[3];
 
 while(<IN>)
 {
@@ -35,7 +35,6 @@ while(<IN>)
 }
 
 $used=0;
-
 $barcode_num1=0;
 foreach my $key ( keys %bs ){
     $index=$barcode_num1/8;

@@ -10,16 +10,16 @@ if [[ ! -f $WL ]] ; then
     echo "Exit ..."
     exit 
 fi
-if [[ -f $BARCODE_FREQ ]] ; then 
+if [[ ! -f $BARCODE_FREQ ]] ; then 
     echo "ERROR : file $BARCODE_FREQ is not exsist !!! Exit ..."
     exit;
 fi
 echo "Generate $MERGE ..."
 date
-$SCRIPT_PATH/bin/merge_barcode.pl $BARCODE_FREQ  $WL $MERGE 0
+$SCRIPT_PATH/bin/merge_barcodes.pl $BARCODE_FREQ  $WL $MERGE 0
 echo "Fake 10X data . this will take a long time ... "
 date
-$SCRIPT_PATH/bin/fake_10x.pl  $SPLIT.1.fq.gz $SPLIT.2.fq.gz $MERGE
+$SCRIPT_PATH/bin/fake_10x.pl  $SPLIT.1.fq.gz $SPLIT.2.fq.gz $BARCODE_FREQ $MERGE
 echo "done step 2 ..."
 date
 
