@@ -9,13 +9,13 @@ lane_num=`ls -all $r1 | wc -l`
 lane2_num=`ls -all  $r2 | wc -l`
 if [[ $lane_num != $lane2_num ]] ; then
     echo "ERROR : Profile error . please make sure all file is correct !!! "
-    exit
+    exit 1
 fi
 echo "generate $R1 and $R2 ..."
 date
 if [[ $lane_num -lt 1 ]] ; then
     echo "ERROR :File not exsit : $r1 . Exit ... "
-    exit
+    exit 1
 elif [[ $lane_num -eq 1 ]] ; then 
     echo "Only 1 lane detect in $r1 . "
     ln -s $r1  $R1 ;
@@ -30,7 +30,7 @@ fi
 
 echo "split barcode ... "
 date
-$SCRIPT_PATH/bin/split_barcode.pl $SCRIPT_PATH/data/barcode.list  $R1 $R2 $SPLIT
+$SCRIPT_PATH/bin/split_barcode.pl $SCRIPT_PATH/data/barcode.list  $R1 $R2 $SPLIT || exit 1
 echo "done step 0 ..."
 date
 

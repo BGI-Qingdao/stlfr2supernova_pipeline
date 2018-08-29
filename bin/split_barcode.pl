@@ -7,7 +7,7 @@ if(@ARGV != 4)
     print "Usage    : perl split_barcode.pl barcode.list r1 r2 output_prefix \n";
     print "Example  : perl split_barcode.pl barcode.list r1.fq.gz r2.fq.gz split_reads \n";
     print "#-------------------------------------------------------------------------------\n";
-    exit(0);
+    exit(1);
 }
 
 my @line;
@@ -88,7 +88,7 @@ while(<IN2>)
         else
         {
             print "Unknow read len of r2 : $len . Please double check the $ARGV[2] file.";
-            exit(0);
+            exit(1);
         }
         last;
     }

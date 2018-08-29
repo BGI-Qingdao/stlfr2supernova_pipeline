@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 print "Merge stLFR reads into 10X format !\n read1 :  $ARGV[0] \n. read2 : $ARGV[1] \n map file : $ARGV[2]\n";
-open IN3,$ARGV[2] ;
+open IN3,$ARGV[2] or die "failed to open $ARGV[2] for read ";
 $barcode_num=1;
 while(<IN3>)
 {
@@ -13,10 +13,10 @@ while(<IN3>)
 close IN3;
 
 #print "____\n";
-open IN1,"gzip -dc $ARGV[0] | ";
-open IN2,"gzip -dc $ARGV[1] | ";
-open OUT,"| gzip > read-RA_si-TTCACGCG_lane-001-chunk-001.fastq.gz";
-open OUT2,"| gzip > read-I1_si-TTCACGCG_lane-001-chunk-001.fastq.gz";
+open IN1,"gzip -dc $ARGV[0] | " or die "failed to open $ARGV[0] for read ";
+open IN2,"gzip -dc $ARGV[1] | "  or die "failed to open $ARGV[1] for read " ;
+open OUT,"| gzip > read-RA_si-TTCACGCG_lane-001-chunk-001.fastq.gz" or die "failed to open  read-RA_si-TTCACGCG_lane-001-chunk-001.fastq.gz for write"; 
+open OUT2,"| gzip > read-I1_si-TTCACGCG_lane-001-chunk-001.fastq.gz"  or die "failed to open  read-RA_si-TTCACGCG_lane-001-chunk-001.fastq.gz for write";
 
 $N=0;
 while(<IN1>)
