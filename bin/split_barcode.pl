@@ -19,6 +19,7 @@ my @line;
 #
 
 print "step 1 : load barcodes ... \n";
+$|=1;
 my %barcode_hash;
 open IN,"$ARGV[0]" or die "cann't not open barcode.list";
 my $index = 0;
@@ -55,6 +56,7 @@ my $line_num = 0;
 # Step 2.
 #       0. detect barcodes type from r2
 print "step 2 : detect barcodes type from r2 ... \n";
+$|=1;
 my $n1 = 10;
 my $n2 = 6;
 my $n3 = 10;
@@ -94,9 +96,11 @@ while(<IN2>)
     }
 }
 close IN2 ; 
-
 my $barcode_types = $index * $index *$index;
 my $barcode_each = $index;
+print "Barcode_types = $barcode_each * $barcode_each * $barcode_each = $barcode_types\n";
+$|=1;
+
 
 #   Step 3
 #       1. make line_num --> barcode_string map.
@@ -118,10 +122,11 @@ my $split_reads_num = 0 ;
 my $split_barcode_num = 0;
 my $progress = 0 ;
 
-print "step 3 : check barcodes from read2 .... \n";
-open IN2,"gzip -dc $ARGV[2] |" or die "cannot open file";
+print "step 3 : parse barcodes from read2 .... \n";
+$|=1;
+open IN3,"gzip -dc $ARGV[2] |" or die "cannot open file";
 $line_num = 0;
-while(<IN2>)
+while(<IN3>)
 {
     chomp;
     @line = split;
@@ -132,7 +137,8 @@ while(<IN2>)
         $reads_num ++;
         if($line_num % 4000000 == 1)
         {
-            print "check barcodes processed $progress (M) reads ...\n";
+            print "parse barcodes processed $progress (M) reads ...\n";
+            $|=1;
             $progress ++ ;
         }
     }
@@ -168,6 +174,7 @@ while(<IN2>)
         }
     }
 }
+close IN3;
 # print stat
 my $r1 = 0 ;
 my $r2 = 0 ;
@@ -194,6 +201,7 @@ close OUT1;
 # Step 4 . parse r1 line by line .
 #
 print "step 4 : parse read 1 ...\n";
+$|=1;
 open IN_r1,"gzip -dc $ARGV[1] |" or die "cannot open $ARGV[1] for read \n";
 open OUT_r1, "| gzip > $ARGV[3].1.fq.gz" or die "Can't open $ARGV[3].1.fq.gz for write";
 
@@ -214,6 +222,7 @@ while(<IN_r1>)
         if($line_num% 4000000 == 1)
         {
             print "parse read 1 processed $progress (M) reads ...\n";
+            $|=1;
             $progress ++ ;
         }
     }
@@ -246,7 +255,8 @@ while(<IN_r2>)
         print OUT_r2  $id."\#$str\/2\t$barcode_str_2_num_hash{$str}\t1\n";
         if($line_num % 4000000 == 1)
         {
-            print "parse read 1 processed $progress (M) reads ...\n";
+            print "parse read 2 processed $progress (M) reads ...\n";
+            $|=1;
             $progress ++ ;
         }
     }
@@ -268,3 +278,4 @@ close IN_r2 ;
 close OUT_r2 ;
 
 print "all done!\n";
+$|=1;

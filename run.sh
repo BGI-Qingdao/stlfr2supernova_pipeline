@@ -10,7 +10,7 @@ if [[ ! -f _step_0_end.txt ]] ; then
     echo `date` >>_step_0_end.txt
 fi
 
-if [[ USE_FILTER == "yes" ]] ; then 
+if [[ $USE_FILTER == "yes" ]] ; then 
     if [[ ! -f _step_1_end.txt ]] ; then 
         # run step 1
         echo `date` >>_step_1_start.txt

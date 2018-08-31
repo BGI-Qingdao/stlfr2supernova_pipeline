@@ -6,6 +6,7 @@ source ./profile
 echo "Check input files ..."
 date
 WL=`ls $SUPERNOVA/supernova-cs/*/tenkit/lib/python/tenkit/barcodes/4M-with-alts-february-2016.txt`
+echo "10X whitelist in $WL"
 if [[ ! -f $WL ]] ; then 
     echo "ERROR : no barcode white list found in $SUPERNOVA/supernova-cs/*/tenkit/lib/python/tenkit/barcodes/4M-with-alts-february-2016.txt"
     echo "Exit ..."
@@ -30,7 +31,7 @@ fi
 
 echo "Generate $MERGE ..."
 date
-$SCRIPT_PATH/bin/merge_barcodes.pl $BARCODE_FREQ  $WL $MERGE 0
+$SCRIPT_PATH/bin/merge_barcodes.pl $BARCODE_FREQ  $WL $MERGE 1 || exit 1
 echo "Fake 10X data . this will take a long time ... "
 date
 if [[ $USE_FILTER == "yes" ]] ; then 

@@ -1,8 +1,17 @@
 #!/usr/bin/perl
+use strict;
 #
 # Usage     : $0 stLFR_barcode_freq 10X_white_list output_file  smallest_freq_num
 # Example   : $0 barcode_freq.txt  whitelist.txt merge.txt 1
 #
+
+print "barcode_freq in $ARGV[0]\n";
+print "whitelist  in $ARGV[1]\n" ;
+print "output merge in $ARGV[2]\n" ;
+print "smallest barcode freq is $ARGV[3]\n" ;
+
+my $barcode_num = 0;
+my @wb ;
 open INb, "$ARGV[1]";
 while(<INb>)
 {
@@ -10,34 +19,43 @@ while(<INb>)
     $wb[$barcode_num]=$_ ;
     $barcode_num ++ ;
 }
-
-print "Total $barcode_num in whilte list of 10X is loaded !!!\n";
 close(INb);
 
-$curr_barcode=1;
+print "Total $barcode_num in whilte list of 10X is loaded !!!\n";
+$| = 1;
+my %bs;
+my $small=$ARGV[3];
+my $line=0;
+my $total=0;
 open IN,"<$ARGV[0]";
-open OUT,">$ARGV[2]";
-$line=0;
-$total=0;
-$small=$ARGV[3];
-
 while(<IN>)
 {
     chomp ;
     my @data=split(/\t/,$_);
     $line ++ ;
+    if( $line >= 1000000 && $line % 1000000 == 0 )
+    {
+        print "Process $line barcode freq line\n ";
+        $| = 1;
+    }
     $total+=$data[1];
-    if ( $data[0] == 0  || $data[0] == "0_0_0" || $data[1] < $small )
+    if ( $data[0] == "barcode_str" 
+        || $data[0] == "0" 
+        || $data[0] == "0_0"
+        || $data[0] == "0_0_0" 
+        || $data[1] < $small )
     {
         next ;
     }
     $bs{$data[0]}=$data[1];
 }
+close(IN);
 
-$used=0;
-$barcode_num1=0;
+open OUT,">$ARGV[2]";
+my $used=0;
+my $barcode_num1=0;
 foreach my $key ( keys %bs ){
-    $index=$barcode_num1/8;
+    my $index=int($barcode_num1/8);
     print OUT "$key\t$wb[$index]\t$bs{$key}\n";
     $barcode_num1 ++ ;
     $used+=$bs{$key};
@@ -46,7 +64,5 @@ foreach my $key ( keys %bs ){
         last ;
     }
 }
-
-print "Total $total pairs and used $used pairs  \n";
-close(IN);
 close(OUT);
+print "Total $total pairs and used $used pairs  \n";

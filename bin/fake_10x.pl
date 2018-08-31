@@ -1,6 +1,7 @@
 #!/usr/bin/perl
 
 print "Merge stLFR reads into 10X format !\n read1 :  $ARGV[0] \n. read2 : $ARGV[1] \n map file : $ARGV[2]\n";
+$|=1;
 open IN3,$ARGV[2] or die "failed to open $ARGV[2] for read ";
 $barcode_num=1;
 while(<IN3>)
@@ -19,8 +20,16 @@ open OUT,"| gzip > read-RA_si-TTCACGCG_lane-001-chunk-001.fastq.gz" or die "fail
 open OUT2,"| gzip > read-I1_si-TTCACGCG_lane-001-chunk-001.fastq.gz"  or die "failed to open  read-RA_si-TTCACGCG_lane-001-chunk-001.fastq.gz for write";
 
 $N=0;
+$line_num=0;
 while(<IN1>)
 {
+    $line_num++;
+    if (  $line_num %4000000 == 0)
+    {
+        $Mr= int($line_num / 4000000);
+        print "process $Mr (Mb) pair of reads now  \n";
+        $|=1;
+    }
     chomp;
     # head looks like : @CL200051332L1C001R001_0#1335_550_1232/2        1       1
     my @line=split(/\t/, $_);
