@@ -11,10 +11,12 @@ fi
 
 echo "supernova run step , this will take a long time ..."
 date
-supernova run --id=$PROJECT_NAME --fastqs=./ --localcores=$THREADS --localmem=$MEMORY --nopreflight || exit 1
+tag=`date +_%m_%d_%H_%M_%S`
+supernova run --id=$PROJECT_NAME --fastqs=./ --localcores=$THREADS --localmem=$MEMORY --nopreflight >supernova_run_"$tag".log 2>supernova_run_"$tag".err || exit 1
 echo "supernova mkoutput"
 date
-supernova mkoutput --style=pseudohap --asmdir="./"$PROJECT_NAME"/outs/assembly" --outprefix="$PROJECT_NAME""_output" || exit 1
+tag=`date +_%m_%d_%H_%M_%S`
+supernova mkoutput --style=pseudohap --asmdir="./"$PROJECT_NAME"/outs/assembly" --outprefix="$PROJECT_NAME""_output"  >supernova_mkoutput_"$tag".log  2>supernova_mkoutput_"$tag".err || exit 1
 echo "done step 3 ..."
 date
 

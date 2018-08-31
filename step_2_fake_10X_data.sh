@@ -31,13 +31,15 @@ fi
 
 echo "Generate $MERGE ..."
 date
-$SCRIPT_PATH/bin/merge_barcodes.pl $BARCODE_FREQ  $WL $MERGE 1 || exit 1
+tag=`date +_%m_%d_%H_%M_%S`
+$SCRIPT_PATH/bin/merge_barcodes.pl $BARCODE_FREQ  $WL $MERGE 1>merge_barcode_"$tag".log  2>merge_barcode_"$tag".err || exit 1
 echo "Fake 10X data . this will take a long time ... "
 date
+tag=`date +_%m_%d_%H_%M_%S`
 if [[ $USE_FILTER == "yes" ]] ; then 
-    $SCRIPT_PATH/bin/fake_10x.pl  $SPLIT.1.fq.gz.clean.gz $SPLIT.2.fq.gz.clean.gz $MERGE || exit 1
+    $SCRIPT_PATH/bin/fake_10x.pl  $SPLIT.1.fq.gz.clean.gz $SPLIT.2.fq.gz.clean.gz $MERGE >fake_10X_"$tag".log 2>fake_10X_"$tag".err || exit 1
 else  
-    $SCRIPT_PATH/bin/fake_10x.pl  $SPLIT.1.fq.gz $SPLIT.2.fq.gz $MERGE || exit 1
+    $SCRIPT_PATH/bin/fake_10x.pl  $SPLIT.1.fq.gz $SPLIT.2.fq.gz $MERGE  >fake_10X_"$tag".log 2>fake_10X_"$tag".err || exit 1
 fi
 echo "done step 2 ..."
 date
