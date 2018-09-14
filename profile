@@ -8,6 +8,9 @@ PROJECT_NAME="Human"
 THREADS=80
 MEMORY=100 #GB
 USE_FILTER="yes"
+MAX_READS=1200000000  #for supernova version <= 2.10
+#MAX_READS=2140000000 #for supernova 2.11
+
 #
 #   exec path below
 #

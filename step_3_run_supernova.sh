@@ -12,7 +12,7 @@ fi
 echo "supernova run step , this will take a long time ..."
 date
 tag=`date +_%m_%d_%H_%M_%S`
-supernova run --id=$PROJECT_NAME --fastqs=./ --localcores=$THREADS --localmem=$MEMORY --nopreflight >supernova_run_"$tag".log 2>supernova_run_"$tag".err || exit 1
+supernova run --id=$PROJECT_NAME --maxreads=$MAX_READS  --fastqs=./ --localcores=$THREADS --localmem=$MEMORY --nopreflight >supernova_run_"$tag".log 2>supernova_run_"$tag".err || exit 1
 echo "supernova mkoutput"
 date
 tag=`date +_%m_%d_%H_%M_%S`
