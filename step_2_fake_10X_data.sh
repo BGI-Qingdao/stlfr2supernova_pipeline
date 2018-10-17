@@ -32,7 +32,7 @@ fi
 echo "Generate $MERGE ..."
 date
 tag=`date +_%m_%d_%H_%M_%S`
-$SCRIPT_PATH/bin/merge_barcodes.pl $BARCODE_FREQ  $WL $MERGE 1>merge_barcode_"$tag".log  2>merge_barcode_"$tag".err || exit 1
+$SCRIPT_PATH/bin/merge_barcodes.pl $BARCODE_FREQ  $WL $MERGE 1 1>merge_barcode_"$tag".log  2>merge_barcode_"$tag".err || exit 1
 echo "Fake 10X data . this will take a long time ... "
 date
 tag=`date +_%m_%d_%H_%M_%S`
