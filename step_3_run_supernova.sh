@@ -4,13 +4,17 @@ source ./profile
 
 export PATH=$SUPERNOVA:$PATH
 
-if [[  ! -f $R1 || ! -f $R2 || ! -f $I1 ]] ; then
-    echo "ERROR : $R1 or $R2 or $I1 not exsist !!! Exit ... "
+if [[  ! -f $SUPERNOVA_R1 || ! -f $SUPERNOVA_R2 || ! -f $SUPERNOVA_I1 ]] ; then
+    echo "ERROR : $SUPERNOVA_R1 or $SUPERNOVA_R2 or $SUPERNOVA_I1 not exsist !!! Exit ... "
     exit 1; 
 fi
-ln -s read-I1_si-TTCACGCG_lane-001-chunk-001.fastq.gz sample_S1_L001_I1_001.fastq.gz
-ln -s read-R1_si-TTCACGCG_lane-001-chunk-001.fastq.gz sample_S1_L001_R1_001.fastq.gz
-ln -s read-R2_si-TTCACGCG_lane-001-chunk-001.fastq.gz sample_S1_L001_R2_001.fastq.gz
+#ln -s read-I1_si-TTCACGCG_lane-001-chunk-001.fastq.gz sample_S1_L001_I1_001.fastq.gz
+#ln -s read-R1_si-TTCACGCG_lane-001-chunk-001.fastq.gz sample_S1_L001_R1_001.fastq.gz
+#ln -s read-R2_si-TTCACGCG_lane-001-chunk-001.fastq.gz sample_S1_L001_R2_001.fastq.gz
+
+ln -s $SUPERNOVA_I1  sample_S1_L001_I1_001.fastq.gz
+ln -s $SUPERNOVA_R1  sample_S1_L001_R1_001.fastq.gz
+ln -s $SUPERNOVA_R2  sample_S1_L001_R2_001.fastq.gz
 
 echo "supernova run step , this will take a long time ..."
 date
