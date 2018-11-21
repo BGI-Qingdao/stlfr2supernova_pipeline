@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SCRIPT_PATH=`dirname $0`
+#SCRIPT_PATH=`dirname $0`
 
 echo "check profile ... "
 date

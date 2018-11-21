@@ -16,6 +16,8 @@ MAX_READS=1200000000  #for supernova version <= 2.10
 #
 #  MODIFY HERE FOR YOU ENVIROMENT !!!
 
+#this is a directory .
+SCRIPT_PATH="./"
 #this is a directory
 SUPERNOVA="/ldfssz1/ST_OCEAN/USER/guolidong/supernova-2.0.0/"  
 #this is a exec file
