@@ -56,13 +56,14 @@ my $used=0;
 my $barcode_num1=0;
 foreach my $key ( keys %bs ){
     my $index=int($barcode_num1/8);
-    print OUT "$key\t$wb[$index]\t$bs{$key}\n";
-    $barcode_num1 ++ ;
-    $used+=$bs{$key};
     if( $index >= $barcode_num)
     {
         last ;
     }
+    print OUT "$key\t$wb[$index]\t$bs{$key}\n";
+    $barcode_num1 ++ ;
+    $used+=$bs{$key};
+    
 }
 close(OUT);
 print "Total $total pairs and used $used pairs  \n";
