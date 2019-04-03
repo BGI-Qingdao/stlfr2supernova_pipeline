@@ -39,10 +39,10 @@ while(<IN>)
         $| = 1;
     }
     $total+=$data[1];
-    if ( $data[0] == "barcode_str" 
-        || $data[0] == "0" 
-        || $data[0] == "0_0"
-        || $data[0] == "0_0_0" 
+    if ( $data[0] eq "barcode_str" 
+        || $data[0] eq "0" 
+        || $data[0] eq "0_0"
+        || $data[0] eq "0_0_0" 
         || $data[1] < $small )
     {
         next ;
@@ -63,7 +63,6 @@ foreach my $key ( keys %bs ){
     print OUT "$key\t$wb[$index]\t$bs{$key}\n";
     $barcode_num1 ++ ;
     $used+=$bs{$key};
-    
 }
 close(OUT);
 print "Total $total pairs and used $used pairs  \n";
