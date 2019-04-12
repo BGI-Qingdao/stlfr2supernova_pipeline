@@ -14,6 +14,10 @@ __________________
     - [Installation](#install)
     - [Structure of the files](#files)
     - [General usage](#usage)
+    - [The profile file](#profile)
+- [Use cases](#use-cases)
+- [Miscellaneous](#misc)
+- [Reference](#ref)
 
 ## <a name=user-guide></a> User's Guide
 __________________
@@ -62,7 +66,7 @@ git clone https://gitlab.com/BGIQD/stlfr2supernova_pipeline.git YOUR-INSTALL-DIR
 > cd YourProjectRoot
 > cp YOUR-INSTALL-DIR/profile ./your_own_profile
 ```
-**Do not modify the filename.Keep it as "profile"**
+    **Do not modify the filename.Keep it as "profile"**
 
 - 3th, edit your_own_profile
 
@@ -81,7 +85,11 @@ git clone https://gitlab.com/BGIQD/stlfr2supernova_pipeline.git YOUR-INSTALL-DIR
 > YOUR-INSTALL-DIR/step_x_xxxx.sh # make sure your run this command in YourProjectRoot
 ```
 
-### The profile file
+### <a name=profile></a> The profile file
+
+    **Do not modify the filename.Keep it as "profile".**
+
+    **Make sure the profile file is in YourProjectRoot directory.**
 
 ```
 #
@@ -127,19 +135,31 @@ SUPERNOVA_R2="read-R2_si-TTCACGCG_lane-001-chunk-001.fastq.gz" # the output 10X 
 
 ```
 
-
-## Use cases
+## <a name=use-cases></a> Use cases
 __________________
 
-### how to re-generate the barcode_freq.txt by split_reads.1.fq.gz
+- how to re-generate the barcode_freq.txt by split_reads.1.fq.gz
 
 ```
-gzip -dc split_reads.1.fq.gz | grep '@CL' | awk -F '[# |]' '{print$2}' | awk -F '/' '{print $1}' | sort | uniq -c | awk '{printf("%s\t%s\n",$2,$1);}' > ~/barcode_freq.txt
+gzip -dc split_reads.1.fq.gz | awk '!(NR%4-1)' | awk -F '[# |]' '{print$2}' | awk -F '/' '{print $1}' | sort | uniq -c | awk '{printf("%s\t%s\n",$2,$1);}' > ~/barcode_freq.txt
 ```
-## Limitations
 
+## <a name=misc></a> Miscellaneous
 
-## Refrence
+- Requrements
+    - Linux system && Bash
+    - Perl
+    - Supernova Assembler
+    - SOAPFilter ( optional )
+- Limitations
+    - What Supernova Assmebler can't do, we also can't .
+- Resources
+    - There are two step that may cause huge memory cost:
+        - step_0_split_barode.sh . this cost depends on your raw reads.
+        - step_3_run_supernova.sh. this cost can be limited by MEMORY ( in profile ).
+    - Only step_3_run_supernova.sh suport multi-threads ( by Supernova ).
+
+## <a name=ref></a> Reference
 __________________
 
 [1] [Efficient and unique co-barcoding of second-generation sequencing reads from long DNA molecules enabling cost effective and accurate sequencing, haplotyping, and de novo assembly][11]
