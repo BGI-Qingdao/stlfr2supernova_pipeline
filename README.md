@@ -27,9 +27,8 @@
 git clone https://gitlab.com/BGIQD/stlfr2supernova_pipeline.git YOUR-INSTALL-DIR
 ```
 
-    * *It is writed by perl and shell script.*
-
-    * *No need for extra compile or install.*
+* *It is writed by perl and shell script.*
+* *No need to do extra compiling or installing.*
 
 ### <a name=files></a> Structure of the files
 
@@ -139,7 +138,7 @@ SUPERNOVA_R2="read-R2_si-TTCACGCG_lane-001-chunk-001.fastq.gz" # the output 10X 
 - how to re-generate the barcode_freq.txt by split_reads.1.fq.gz
 
 ```
-gzip -dc split_reads.1.fq.gz | awk '!(NR%4-1)' | awk -F '[# |]' '{print$2}' | awk -F '/' '{print $1}' | sort | uniq -c | awk '{printf("%s\t%s\n",$2,$1);}' > ~/barcode_freq.txt
+gzip -dc split_reads.1.fq.gz | awk '!(NR%4-1)' | awk -F '[# |]' '{print$2}' | awk -F '/' '{print $1}' | sort | uniq -c | awk '{printf("%s\t%s\n",$2,$1);}' > barcode_freq.txt
 ```
 
 ## <a name=misc></a> Miscellaneous
