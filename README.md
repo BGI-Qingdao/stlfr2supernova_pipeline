@@ -77,7 +77,7 @@ git clone https://gitlab.com/BGIQD/stlfr2supernova_pipeline.git YOUR-INSTALL-DIR
 ```
 > YOUR-INSTALL-DIR/run.sh  # make sure your run this command in YourProjectRoot
 ```
-    - 4.2 run the pipeline step by step or only run what you need
+-    - 4.2 run the pipeline step by step or only run what you need
 
 ```
 > YOUR-INSTALL-DIR/step_x_xxxx.sh # make sure your run this command in YourProjectRoot
