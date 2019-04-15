@@ -27,7 +27,7 @@
 git clone https://gitlab.com/BGIQD/stlfr2supernova_pipeline.git YOUR-INSTALL-DIR
 ```
 
-* *It is writed by perl and shell script.*
+* *It is wrote by perl and shell script.*
 * *No need to do extra compiling or installing.*
 
 ### <a name=files></a> Structure of the files
@@ -43,7 +43,7 @@ git clone https://gitlab.com/BGIQD/stlfr2supernova_pipeline.git YOUR-INSTALL-DIR
 │   ├── barcode.list            # the barcode list of stLFR.
 │   └── lane.lst                # config for SOAPfilter.
 ├── profile                     # the default profile.
-├── run.sh                      # one step pipeline,will call step 0 ~ 3
+├── run.sh                      # one main step pipeline,which call four substeps 0 ~ 3
 ├── step_0_split_barode.sh      # call split_barcode.pl and generate split_reads.*.fq.gz & barcode_freq.txt
 ├── step_1_filter.sh            # call SOAPfilter_v2.2 and generate split_reads.*.fq.gz.clean.gz
 ├── step_2_fake_10X_data.sh     # call merge_barcodes.pl & fake_10x.pl and generate merge.txt & read-R*_si-TTCACGCG_lane-001-chunk-001.fastq.gz
@@ -52,13 +52,13 @@ git clone https://gitlab.com/BGIQD/stlfr2supernova_pipeline.git YOUR-INSTALL-DIR
 
 ### <a name=usage></a> General usage
 
-- 1th, create a new working folder
+- 1st, create a new working folder
 
 ```
 > mkdir YourProjectRoot
 ```
 
-- 2th, copy the default profile into your working folder
+- 2nd, copy the default profile into your working folder
 
 ```
 > cd YourProjectRoot
@@ -66,18 +66,19 @@ git clone https://gitlab.com/BGIQD/stlfr2supernova_pipeline.git YOUR-INSTALL-DIR
 ```
     **Do not modify the filename.Keep it as "profile"**
 
-- 3th, edit your_own_profile
+- 3rd, edit your_own_profile
 
 ```
 > vi ./your_own_profile 
 ```
-- 4.0th, run the whole pipeline with your profile
+- 4th, run the main pipeline with your profile or run it step by step
 
+--4.1 run the main pipeline by one step
 ```
 > YOUR-INSTALL-DIR/run.sh  # make sure your run this command in YourProjectRoot
-
 ```
-- 4.1th, if you don't want to run the whole pipeline, you can run it step by step and only run what you need .
+
+-- 4.2 run the pipeline step by step or only run what you need .
 
 ```
 > YOUR-INSTALL-DIR/step_x_xxxx.sh # make sure your run this command in YourProjectRoot
@@ -91,7 +92,7 @@ git clone https://gitlab.com/BGIQD/stlfr2supernova_pipeline.git YOUR-INSTALL-DIR
 
 ```
 #
-#   baisc settings below 
+#   basic settings below 
 #  MODIFY HERE FOR YOU PROJECT !!!
 #
 r1="L1.1.fq.gz L2.1.fq.gz"  # the stLFR raw read1. differnt lane use " " to seperate.
@@ -109,16 +110,15 @@ MAX_READS=1200000000        # supernova's --maxreads #    for supernova version 
 #
 #  MODIFY HERE FOR YOU ENVIROMENT !!!
 
-#this is the YOUR-INSTALL-DIR directory .
+# "SCRIPT_PATH" is the YOUR-INSTALL-DIR directory .
 SCRIPT_PATH="~/software/stlfr2supernova/"
-#this is the root directory of supernova
-#different version number can be accepted.
+#"SUPERNOVA" is the executing directory of supernova. Different version number can be accepted.
 SUPERNOVA="~/software/supernova-2.0.0/"  
-#this is the SOAPFilter path
+#"SOAP_FILTER is the executing diretory of SOAPFilter
 SOAP_FILTER="/hwfssz1/ST_OCEAN/USER/guolidong/stLFR/data_pipeline/SOAPfilter_v2.2.1/SOAPfilter_v2.2"
 
 #
-#   files that will be generated/needed below .
+#   intermediate files that will be generated/needed below .
 #       DO NOT MODIFY BELOW
 # UNLESS YOU KNOW WHAT YOU ARE DOING.
 #
@@ -143,7 +143,7 @@ gzip -dc split_reads.1.fq.gz | awk '!(NR%4-1)' | awk -F '[# |]' '{print$2}' | aw
 
 ## <a name=misc></a> Miscellaneous
 
-- Requrements
+- Requirements
     - Linux system && Bash
     - Perl
     - Supernova Assembler
