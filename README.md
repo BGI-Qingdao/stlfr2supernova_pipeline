@@ -95,7 +95,7 @@ git clone https://github.com/BGI-Qingdao/stlfr2supernova_pipeline.git YOUR-INSTA
 #  MODIFY HERE FOR YOU PROJECT !!!
 #
 r1="L1.1.fq.gz L2.1.fq.gz"  # the stLFR raw read1. differnt lane use " " to seperate.
-r2="L1.2.fq.gz L2.2.fq.gz"  # the stLFR raw read1. differnt lane use " " to seperate.
+r2="L1.2.fq.gz L2.2.fq.gz"  # the stLFR raw read2. differnt lane use " " to seperate.
 USE_FILTER="yes"            # yes or no. # use SOAPFilter or not
 # below are baisc parameters for supernova assembler
 PROJECT_NAME="Human"        # supernova's --id
