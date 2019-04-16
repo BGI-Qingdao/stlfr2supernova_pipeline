@@ -14,7 +14,7 @@
     - [Installation](#install)
     - [Structure of the files](#files)
     - [General usage](#usage)
-    - [The profile file](#profile)
+    - [Profile file](#profile)
 - [Use cases](#use-cases)
 - [Miscellaneous](#misc)
 - [Reference](#ref)
