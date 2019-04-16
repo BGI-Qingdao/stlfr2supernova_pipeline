@@ -27,8 +27,8 @@
 git clone https://github.com/BGI-Qingdao/stlfr2supernova_pipeline.git YOUR-INSTALL-DIR
 ```
 
-* * Written by Perl and Shell languages.*
-* * Unnecessary to do extra compilation or installation. No other dependencies.*
+*Written by Perl and Shell languages.*
+*Unnecessary to do extra compilation or installation. No other dependencies.*
 
 ### <a name=files></a> Structure of the files
 
