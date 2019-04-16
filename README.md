@@ -24,7 +24,7 @@
 ### <a name=install></a>Installation
 
 ```
-git clone https://gitlab.com/BGIQD/stlfr2supernova_pipeline.git YOUR-INSTALL-DIR
+git clone https://github.com/BGI-Qingdao/stlfr2supernova_pipeline.git YOUR-INSTALL-DIR
 ```
 
 * *It is wrote by perl and shell script.*
