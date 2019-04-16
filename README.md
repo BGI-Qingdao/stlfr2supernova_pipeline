@@ -36,8 +36,8 @@ git clone https://github.com/BGI-Qingdao/stlfr2supernova_pipeline.git YOUR-INSTA
 ├── README.md
 ├── bin
 │   ├── SOAPfilter_v2.2         # filter dup & adaptor.
-│   ├── split_barcode.pl        # split barcode sequence into barcode number.
-│   ├── merge_barcodes.pl       # random map 8 stLFR barcode to 1 10X barcode.
+│   ├── split_barcode.pl        # split barcode sequences, expressed as barcode numbers.
+│   ├── merge_barcodes.pl       # randomly map 8 stLFR barcodes to 1 10X-format barcode.
 │   └── fake_10x.pl             # convert stLFR reads to 10X format reads.
 ├── data
 │   ├── barcode.list            # the barcode list of stLFR.
