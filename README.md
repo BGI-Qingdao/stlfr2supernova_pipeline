@@ -19,9 +19,9 @@
 - [Miscellaneous](#misc)
 - [Reference](#ref)
 - [Appendix](#appendix)
-    - [Appendix A : the fastq format of stLFR raw reads](#stlfr_raw)
-    - [Appendix B : the fastq format of stLFR reads](#stlfr)
-    - [Appendix C : the fastq format of 10X reads](#10X)
+    - [Appendix A : an example of stLFR raw reads](#stlfr_raw)
+    - [Appendix B : an example of stLFR reads](#stlfr)
+    - [Appendix C : an example of 10X reads](#10X)
 
 ## <a name=user-guide>User's Guide</a>
 
@@ -170,7 +170,7 @@ gzip -dc split_reads.1.fq.gz | awk '!(NR%4-1)' | awk -F '[# |]' '{print$2}' | aw
 
 ## <a name=appendix>Appendix</a>
 
-### <a name=stlfr_raw>Appendix A : the fastq format of stLFR raw reads</a>
+### <a name=stlfr_raw>Appendix A : an example of stLFR raw reads</a>
 
 - the read1 of stLFR raw reads
 
@@ -212,7 +212,7 @@ AGTCAACGCACATCCTCTTGGTTTTGTCTTTCTTCTCCACAAAGATAACCGGAGCACCCCAAGGCGACGTGCTCGGACGG
 EFD8DBFFEFFFFEFFFFFFFFDCDFEFEFFFFFFFFFFFCEFFEEFFFFFFDFFFFFEFFEFFFFDFFDFFFFFF>EFFD>F<6FFFD'FF9FA;,D+9FFBFFFFFFD&>5(&>FFFFDFEFFFFE(F5FDFFEFFFFFF
 ```
 
-### <a name=stlfr>Appendix B : the fastq format of stLFR reads</a>
+### <a name=stlfr>Appendix B : an example of stLFR reads</a>
 
 - the read1 of stLFR reads
 
@@ -252,7 +252,7 @@ AGTCAACGCACATCCTCTTGGTTTTGTCTTTCTTCTCCACAAAGATAACCGGAGCACCCCAAGGCGACGTGCTCGGACGG
 EFD8DBFFEFFFFEFFFFFFFFDCDFEFEFFFFFFFFFFFCEFFEEFFFFFFDFFFFFEFFEFFFFDFFDFFFFFF>EFFD>F<6FFFD'FF9FA;,D+9
 ```
 
-### <a name=10x>Appendix B : the fastq format of 10X reads</a>
+### <a name=10x>Appendix C : an example of 10X reads</a>
 
 - the read1 of 10X reads
 
