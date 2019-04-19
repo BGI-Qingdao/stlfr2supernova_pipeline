@@ -3,6 +3,8 @@
 #SCRIPT_PATH=`dirname $0`
 source ./profile
 
+BQT=$BARCODE_FREQ_THRESHOLD
+
 echo "Check input files ..."
 date
 WL=`ls $SUPERNOVA/supernova-cs/*/tenkit/lib/python/tenkit/barcodes/4M-with-alts-february-2016.txt`
@@ -32,7 +34,7 @@ fi
 echo "Generate $MERGE ..."
 date
 tag=`date +_%m_%d_%H_%M_%S`
-$SCRIPT_PATH/bin/merge_barcodes.pl $BARCODE_FREQ  $WL $MERGE 2 1>merge_barcode_"$tag".log  2>merge_barcode_"$tag".err || exit 1
+$SCRIPT_PATH/bin/merge_barcodes.pl $BARCODE_FREQ  $WL $MERGE $BQT $MAP_RATIO  1> merge_barcode_"$tag".log  2>merge_barcode_"$tag".err || exit 1
 echo "Fake 10X data . this will take a long time ... "
 date
 tag=`date +_%m_%d_%H_%M_%S`

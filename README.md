@@ -101,6 +101,8 @@ git clone https://github.com/BGI-Qingdao/stlfr2supernova_pipeline.git YOUR-INSTA
 r1="L1.1.fq.gz L2.1.fq.gz"  # the stLFR raw read1. differnt lane use " " to seperate.
 r2="L1.2.fq.gz L2.2.fq.gz"  # the stLFR raw read2. differnt lane use " " to seperate.
 USE_FILTER="yes"            # yes or no. # use SOAPFilter or not
+BARCODE_FREQ_THRESHOLD=2    # if a barcode's read-pair num is less then BARCODE_FREQ_THRESHOLD, drop it.
+MAP_RATIO=8                 # map MAP_RATIO stLFR barcode into 1 10X barcode
 # below are baisc parameters for supernova assembler
 PROJECT_NAME="Human"        # supernova's --id
 THREADS=80                  # supernova's --localcores

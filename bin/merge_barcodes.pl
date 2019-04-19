@@ -9,7 +9,7 @@ print "barcode_freq in $ARGV[0]\n";
 print "whitelist  in $ARGV[1]\n" ;
 print "output merge in $ARGV[2]\n" ;
 print "smallest barcode freq is $ARGV[3]\n" ;
-
+print "the stLFR barcode : 10x barcode map ratio is $ARGV[4]:1" ;
 my $barcode_num = 0;
 my @wb ;
 open INb, "$ARGV[1]";
@@ -25,6 +25,7 @@ print "Total $barcode_num in whilte list of 10X is loaded !!!\n";
 $| = 1;
 my %bs;
 my $small=$ARGV[3];
+my $ratio=$ARGV[4];
 my $line=0;
 my $total=0;
 open IN,"<$ARGV[0]";
@@ -55,7 +56,7 @@ open OUT,">$ARGV[2]";
 my $used=0;
 my $barcode_num1=0;
 foreach my $key ( keys %bs ){
-    my $index=int($barcode_num1/8);
+    my $index=int($barcode_num1/int($ratio));
     if( $index >= $barcode_num)
     {
         last ;
