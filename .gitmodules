@@ -1,0 +1,3 @@
+[submodule "stLFR_barcode_split"]
+	path = stLFR_barcode_split
+	url = https://github.com/BGI-Qingdao/stLFR_barcode_split.git

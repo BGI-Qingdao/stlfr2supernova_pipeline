@@ -31,7 +31,7 @@ fi
 echo "split barcode ... "
 date
 tag=`date +_%m_%d_%H_%M_%S`
-$SCRIPT_PATH/bin/split_barcode.pl $SCRIPT_PATH/data/barcode.list  $R1 $R2 $SPLIT  >split_barcode_"$tag".log 2>split_barcode_"$tag".err|| exit 1
+$SCRIPT_PATH/stLFR_barcode_split/split_barcode.pl $SCRIPT_PATH/stLFR_barcode_split/barcode_list.txt $R1 $R2 $SPLIT  >split_barcode_"$tag".log 2>split_barcode_"$tag".err|| exit 1
 echo "done step 0 ..."
 date
 
