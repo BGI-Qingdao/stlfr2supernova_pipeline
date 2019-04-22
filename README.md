@@ -27,9 +27,18 @@
 
 ### <a name=install>Installation</a>
 
+
 ```
-git clone https://github.com/BGI-Qingdao/stlfr2supernova_pipeline.git YOUR-INSTALL-DIR
+git clone --recursive https://github.com/BGI-Qingdao/stlfr2supernova_pipeline.git YOUR-INSTALL-DIR
 ```
+or 
+```
+git clone https://github.com/BGI-Qingdao/stlfr2supernova_pipeline.git  YOUR-INSTALL-DIR
+cd YOUR-INSTALL-DIR
+git submodule init
+git submodule update
+```
+
 
 *Written by Perl and Shell languages.*
 *Unnecessary to do extra compilation or installation. No other dependencies.*
