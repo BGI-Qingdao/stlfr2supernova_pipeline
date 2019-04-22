@@ -35,6 +35,7 @@ R1="tmp_r1.fq.gz"                   # A symbol-link if raw reads only contain 1 
 R2="tmp_r2.fq.gz"
 SPLIT="split_reads"                 # the prefix of splited reads. split_reads.1.fq.gz & split_reads.2.fq.gz
 BARCODE_FREQ="./barcode_freq.txt"   # the barcode frequence information
+CLEAN_BARCODE_FREQ="./clean_barcode_freq.txt"   # the barcode frequence information after filter.
 MERGE="merge.txt"                   # the stLFR->10X barcode mapping information 
 SUPERNOVA_R1="read-R1_si-TTCACGCG_lane-001-chunk-001.fastq.gz" # the output 10X reads
 SUPERNOVA_I1="read-I1_si-TTCACGCG_lane-001-chunk-001.fastq.gz" # the output 10X reads
