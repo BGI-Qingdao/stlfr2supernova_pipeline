@@ -18,6 +18,7 @@
 - [Use cases](#use-cases)
 - [Miscellaneous](#misc)
 - [Reference](#ref)
+- [Contact](#ref)
 - [Appendix](#appendix)
     - [Appendix A : an example of stLFR raw reads](#stlfr_raw)
     - [Appendix B : an example of stLFR reads](#stlfr)
@@ -178,6 +179,11 @@ gzip -dc split_reads.1.fq.gz | awk '!(NR%4-1)' | awk -F '[# |]' '{print$2}' | aw
 
 [11]: https://www.ncbi.nlm.nih.gov/pubmed/30940689 
 [22]: https://www.ncbi.nlm.nih.gov/pubmed/28381613 
+
+## <a name=contact>Contact</a>
+
+- please contact guolidong@genomics.cn 
+- or please raise an issue in github.
 
 ## <a name=appendix>Appendix</a>
 
