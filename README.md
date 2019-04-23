@@ -141,6 +141,7 @@ R1="tmp_r1.fq.gz"                   # A symbol-link if raw reads only contain 1 
 R2="tmp_r2.fq.gz"
 SPLIT="split_reads"                 # the prefix of splited reads. split_reads.1.fq.gz & split_reads.2.fq.gz
 BARCODE_FREQ="./barcode_freq.txt"   # the barcode frequence information
+CLEAN_BARCODE_FREQ="./clean_barcode_freq.txt"   # the barcode frequence information after filter.
 MERGE="merge.txt"                   # the stLFR->10X barcode mapping information 
 SUPERNOVA_R1="read-R1_si-TTCACGCG_lane-001-chunk-001.fastq.gz" # the output 10X reads
 SUPERNOVA_I1="read-I1_si-TTCACGCG_lane-001-chunk-001.fastq.gz" # the output 10X reads
@@ -150,11 +151,17 @@ SUPERNOVA_R2="read-R2_si-TTCACGCG_lane-001-chunk-001.fastq.gz" # the output 10X 
 
 ## <a name=use-cases>Use cases</a>
 
-- If there is no file "barcode_freq.text" in the directory "YourProjectRoot", we can re-generate the barcode_freq.txt by split_reads.1.fq.gz as following command 
+- If there is no file "barcode_freq.text" (or clean_barcode_freq.txt) in the directory "YourProjectRoot", we can re-generate the it by split_reads.1.fq.gz ( or split_reads.1.fq.gz.clean.gz) as following command 
 
 ```
 gzip -dc split_reads.1.fq.gz | awk '!(NR%4-1)' | awk -F '[# |]' '{print$2}' | awk -F '/' '{print $1}' | sort | uniq -c | awk '{printf("%s\t%s\n",$2,$1);}' > barcode_freq.txt
 ```
+
+- Why your 10X reads number is less than your stLFR clean reads number ?
+    - 1st. The "0_0_0" barcode is deleted because it refer to barcode-decode-failure.
+    - 2nd. Barcodes contain too little reads are deleted . Your can control this by BARCODE_FREQ_THRESHOLD.
+    - 3rd. Since I map stLFR barcode into 10X barcode by " MAP_RATIO : 1  " , if your valid barcode type is greater than "MAP_RATIO * 10X barcode type " , the barcodes in the overflow part are deleted ! 
+        - the 10X barcode type is 4792320
 
 ## <a name=misc>Miscellaneous</a>
 
