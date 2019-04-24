@@ -23,8 +23,8 @@ MAX_READS=1200000000        # supernova's --maxreads #    for supernova version 
 SCRIPT_PATH="~/software/stlfr2supernova/"
 #"SUPERNOVA" is the executing directory of supernova. Different version number can be accepted.
 SUPERNOVA="~/software/supernova-2.0.0/"  
-#"SOAP_FILTER is the executing diretory of SOAPFilter
-SOAP_FILTER="/hwfssz1/ST_OCEAN/USER/guolidong/stLFR/data_pipeline/SOAPfilter_v2.2.1/SOAPfilter_v2.2"
+#"SOAP_FILTER is the executing file of SOAPFilter
+SOAP_FILTER="~/software/SOAPfilter_v2.2"
 
 #
 #   intermediate files that will be generated/needed below .
