@@ -49,19 +49,19 @@ git submodule update
 ```
 ├── README.md
 ├── bin
-│   ├── SOAPfilter_v2.2         # filter dup & adaptor.
-│   ├── split_barcode.pl        # split barcode ,convert stLFR raw reads to stLFR reads.
-│   ├── merge_barcodes.pl       # randomly map 8 stLFR barcodes to 1 10X-format barcode.
-│   └── fake_10x.pl             # convert stLFR reads to 10X format reads.
+│   ├── SOAPfilter_v2.2         # filters duplication & adaptors.
+│   ├── split_barcode.pl        # splits raw reads, get barcode sequences, and convert stLFR raw reads to stLFR reads.
+│   ├── merge_barcodes.pl       # randomly merges each 8 stLFR barcodes to 1 10X-format barcode.
+│   └── fake_10x.pl             # converts stLFR reads to 10X reads.
 ├── data
-│   ├── barcode.list            # the barcode list of stLFR.
+│   ├── barcode.list            # barcode list of stLFR.
 │   └── lane.lst                # config for SOAPfilter.
-├── profile                     # the default profile.
-├── run.sh                      # one main step pipeline,which call four substeps 0 ~ 3
-├── step_0_split_barode.sh      # call split_barcode.pl and generate split_reads.*.fq.gz & barcode_freq.txt
-├── step_1_filter.sh            # call SOAPfilter_v2.2 and generate split_reads.*.fq.gz.clean.gz
-├── step_2_fake_10X_data.sh     # call merge_barcodes.pl & fake_10x.pl and generate merge.txt & read-R*_si-TTCACGCG_lane-001-chunk-001.fastq.gz
-└── step_3_run_supernova.sh     # call Supernova Assmebler
+├── profile                     # default profile.
+├── run.sh                      # 1-click executable script, which calls all four substeps 0 ~ 3.
+├── step_0_split_barode.sh      # calls split_barcode.pl and generate split_reads.*.fq.gz & barcode_freq.txt.
+├── step_1_filter.sh            # calls SOAPfilter_v2.2 and generate split_reads.*.fq.gz.clean.gz.
+├── step_2_fake_10X_data.sh     # calls merge_barcodes.pl & fake_10x.pl and generate merge.txt & read-R*_si-TTCACGCG_lane-001-chunk-001.fastq.gz.
+└── step_3_run_supernova.sh     # calls Supernova Assmebler.
 ```
 
 ### <a name=usage>General usage</a>
