@@ -191,7 +191,7 @@ gzip -dc split_reads.1.fq.gz | awk '!(NR%4-1)' | awk -F '[# |]' '{print$2}' | aw
 ## <a name=contact>Contact</a>
 
 - please contact guolidong@genomics.cn 
-- or please raise an issue in github.
+- or please creat an issue in github.
 
 ## <a name=appendix>Appendix</a>
 
