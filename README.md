@@ -15,7 +15,7 @@
     - [Structure of the files](#files)
     - [General usage](#usage)
     - [Profile file](#profile)
-- [Use cases](#use-cases)
+- [Frequent Q & A](#use-cases)
 - [Miscellaneous](#misc)
 - [Reference](#ref)
 - [Contact](#ref)
@@ -149,7 +149,7 @@ SUPERNOVA_R2="read-R2_si-TTCACGCG_lane-001-chunk-001.fastq.gz" # the output 10X 
 
 ```
 
-## <a name=use-cases>Use cases</a>
+## <a name=use-cases>Frequent Q & A</a>
 
 - If there is no file "barcode_freq.text" (or clean_barcode_freq.txt) in the directory "YourProjectRoot", we can re-generate the it by split_reads.1.fq.gz ( or split_reads.1.fq.gz.clean.gz) as following command 
 
