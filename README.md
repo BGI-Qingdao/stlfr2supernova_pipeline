@@ -57,7 +57,7 @@ git submodule update
 │   ├── barcode.list            # barcode list of stLFR.
 │   └── lane.lst                # config for SOAPfilter.
 ├── profile                     # default profile.
-├── run.sh                      # 1-click executable script, which calls all four substeps 0 ~ 3.
+├── run.sh                      # 1-step executable script, which calls all four substeps 0 ~ 3.
 ├── step_0_split_barode.sh      # calls split_barcode.pl and generate split_reads.*.fq.gz & barcode_freq.txt.
 ├── step_1_filter.sh            # calls SOAPfilter_v2.2 and generate split_reads.*.fq.gz.clean.gz.
 ├── step_2_fake_10X_data.sh     # calls merge_barcodes.pl & fake_10x.pl and generate merge.txt & read-R*_si-TTCACGCG_lane-001-chunk-001.fastq.gz.
@@ -66,32 +66,32 @@ git submodule update
 
 ### <a name=usage>General usage</a>
 
-- 1st, create a new working folder
+- 1st, create a new work folder
 
 ```
 > mkdir YourProjectRoot
 ```
 
-- 2nd, copy the default profile into your working folder
+- 2nd, copy the default profile into your work folder
 
 ```
 > cd YourProjectRoot
 > cp YOUR-INSTALL-DIR/profile ./your_own_profile
 ```
-    **Do not modify the filename.Keep it as "profile"**
+    **Do not change the filename. Always use "profile".**
 
 - 3rd, edit your_own_profile
 
 ```
 > vi ./your_own_profile 
 ```
-- 4th, run the main pipeline with your profile or run it step by step
+- 4th, run the 1-step executable script with your profile or run it step by step
 
-    - 4.1 run the main pipeline by one step
+    - 4.1 run the 1-step executable script
 ```
 > YOUR-INSTALL-DIR/run.sh  # make sure your run this command in YourProjectRoot
 ```
--    - 4.2 run the pipeline step by step or only run what you need
+-   - 4.2 run the pipeline step by step or just run what you want
 
 ```
 > YOUR-INSTALL-DIR/step_x_xxxx.sh # make sure your run this command in YourProjectRoot
@@ -99,7 +99,7 @@ git submodule update
 
 ### <a name=profile>The profile file</a>
 
-**Do not modify the filename.Keep it as "profile".**
+**Do not change the filename. Always use "profile".**
 
 **Make sure the profile file is in YourProjectRoot directory.**
 
@@ -108,11 +108,11 @@ git submodule update
 #   basic settings below 
 #  MODIFY HERE FOR YOU PROJECT !!!
 #
-r1="L1.1.fq.gz L2.1.fq.gz"  # the stLFR raw read1. differnt lane use " " to seperate.
-r2="L1.2.fq.gz L2.2.fq.gz"  # the stLFR raw read2. differnt lane use " " to seperate.
+r1="L1.1.fq.gz L2.1.fq.gz"  # stLFR raw read1. use " " to seperate differnt lanes.
+r2="L1.2.fq.gz L2.2.fq.gz"  # stLFR raw read2. use " " to seperate differnt lanes.
 USE_FILTER="yes"            # yes or no. # use SOAPFilter or not
-BARCODE_FREQ_THRESHOLD=2    # if a barcode's read-pair num is less then BARCODE_FREQ_THRESHOLD, drop it.
-MAP_RATIO=8                 # map MAP_RATIO stLFR barcode into 1 10X barcode
+BARCODE_FREQ_THRESHOLD=2    # if the number of read pairs sharing the same barcode is smaller then BARCODE_FREQ_THRESHOLD, then discard the barcode.
+MAP_RATIO=8                 # merge each MAP_RATIO stLFR barcodes to 1 10X barcode
 # below are baisc parameters for supernova assembler
 PROJECT_NAME="Human"        # supernova's --id
 THREADS=80                  # supernova's --localcores
@@ -127,9 +127,9 @@ MAX_READS=1200000000        # supernova's --maxreads #    for supernova version 
 
 # "SCRIPT_PATH" is the YOUR-INSTALL-DIR directory .
 SCRIPT_PATH="~/software/stlfr2supernova/"
-#"SUPERNOVA" is the executing directory of supernova. Different version number can be accepted.
+#"SUPERNOVA" is the executable path of supernova. Various versions are acceptable.
 SUPERNOVA="~/software/supernova-2.0.0/"  
-#"SOAP_FILTER is the executing diretory of SOAPFilter
+#"SOAP_FILTER is the executable path of SOAPFilter
 SOAP_FILTER="/hwfssz1/ST_OCEAN/USER/guolidong/stLFR/data_pipeline/SOAPfilter_v2.2.1/SOAPfilter_v2.2"
 
 #
@@ -137,9 +137,9 @@ SOAP_FILTER="/hwfssz1/ST_OCEAN/USER/guolidong/stLFR/data_pipeline/SOAPfilter_v2.
 #       DO NOT MODIFY BELOW
 # UNLESS YOU KNOW WHAT YOU ARE DOING.
 #
-R1="tmp_r1.fq.gz"                   # A symbol-link if raw reads only contain 1 lane, a concatenate of all lane otherwise.
+R1="tmp_r1.fq.gz"                   # the symbol-link concatenating different lanes.
 R2="tmp_r2.fq.gz"
-SPLIT="split_reads"                 # the prefix of splited reads. split_reads.1.fq.gz & split_reads.2.fq.gz
+SPLIT="split_reads"                 # the prefix of splitted reads. split_reads.1.fq.gz & split_reads.2.fq.gz
 BARCODE_FREQ="./barcode_freq.txt"   # the barcode frequence information
 CLEAN_BARCODE_FREQ="./clean_barcode_freq.txt"   # the barcode frequence information after filter.
 MERGE="merge.txt"                   # the stLFR->10X barcode mapping information 
@@ -151,17 +151,18 @@ SUPERNOVA_R2="read-R2_si-TTCACGCG_lane-001-chunk-001.fastq.gz" # the output 10X 
 
 ## <a name=use-cases>Frequent Q & A</a>
 
-- If there is no file "barcode_freq.text" (or clean_barcode_freq.txt) in the directory "YourProjectRoot", we can re-generate the it by split_reads.1.fq.gz ( or split_reads.1.fq.gz.clean.gz) as following command 
+- If there is no file "barcode_freq.text" (or clean_barcode_freq.txt) in the directory "YourProjectRoot", then you can re-generate it with split_reads.1.fq.gz ( or split_reads.1.fq.gz.clean.gz) following the command below 
 
 ```
 gzip -dc split_reads.1.fq.gz | awk '!(NR%4-1)' | awk -F '[# |]' '{print$2}' | awk -F '/' '{print $1}' | sort | uniq -c | awk '{printf("%s\t%s\n",$2,$1);}' > barcode_freq.txt
 ```
 
-- Why your 10X reads number is less than your stLFR clean reads number ?
-    - 1st. The "0_0_0" barcode is deleted because it refer to barcode-decode-failure.
-    - 2nd. Barcodes contain too little reads are deleted . Your can control this by BARCODE_FREQ_THRESHOLD.
-    - 3rd. Since I map stLFR barcode into 10X barcode by " MAP_RATIO : 1  " , if your valid barcode type is greater than "MAP_RATIO * 10X barcode type " , the barcodes in the overflow part are deleted ! 
-        - the 10X barcode type is 4792320
+- Why is the number of 10X reads smaller than that of the initial stLFR clean reads ?
+    - 1st. Reads sharing the "0_0_0" barcode are discarded since it refers to the barcode-decode-failure.
+    - 2nd. Very few reads sharing the same barcode are discarded since the barcode information is useless. Your can adjust it by changing BARCODE_FREQ_THRESHOLD.
+    - 3rd. The number of stLFR barcodes is much larger than that of 10X barcodes.  Supernova can only accept reads up to # of 10 X barcodes * MAP_RATIO. Overflow part is discarded ! 
+        - stLFR has ~1.8 billion unique barcodes
+        - 10X has 4,792,320 unique barcodes
 
 ## <a name=misc>Miscellaneous</a>
 
@@ -171,12 +172,12 @@ gzip -dc split_reads.1.fq.gz | awk '!(NR%4-1)' | awk -F '[# |]' '{print$2}' | aw
     - Supernova Assembler
     - SOAPFilter ( optional )
 - Limitations
-    - What Supernova Assmebler can't do, we also can't .
+    - We can only do what Supernova can do.
 - Resources
-    - There are two step that may cause huge memory cost:
+    - There are two steps that might cause huge memory cost:
         - step_0_split_barode.sh . this cost depends on your raw reads.
         - step_3_run_supernova.sh. this cost can be limited by MEMORY ( in profile ).
-    - Only step_3_run_supernova.sh suport multi-threads ( by Supernova ).
+    - Only step_3_run_supernova.sh suports multi-threads ( by Supernova ).
 
 ## <a name=ref>Reference</a>
 
@@ -196,9 +197,9 @@ gzip -dc split_reads.1.fq.gz | awk '!(NR%4-1)' | awk -F '[# |]' '{print$2}' | aw
 
 ### <a name=stlfr_raw>Appendix A : an example of stLFR raw reads</a>
 
-- the read1 of stLFR raw reads
+- Read1 of stLFR raw reads
 
-*There is no barcode information at read 1*
+*There is no barcode information within read1*
 
 ```
 @CL100117953L1C001R001_1/1
@@ -215,11 +216,11 @@ CACCGATCCACAAGAGGCCTTACAGAATGGGAGCCAGCGAGTTGGCGGAAGTCAAGAAGCAAGTCGATGAACAGTTATAG
 FFFFFFFFFFFFFFEF>FFFFFFFFFFEFFFFFFFFFFFFFFEFFFFFCEF>FF>GCAFBFFFFFF;7FEFFCFE9FAFFEFFFF<=;'8EFFFAF=FFF
 ```
 
-- the read2 of stLFR raw reads
+- Read2 of stLFR raw reads
 
-*The last 42bp sequence is the stLFR barcode information at read 2*
+*The last 42-bp sequence provides the stLFR barcode information within read2*
 
-*As far as I know, there are 3 type of r2 : 126bp or 142bp or 154bp. If your r2 is not one of this 3 type, error will happend!*
+*There are 3 acceptable types of stLFR raw read2: 126bp or 142bp or 154bp. If your read2 does not belong to one of them, then it will stop. *
 
 ```
 @CL100117953L1C001R001_1/2
@@ -238,9 +239,9 @@ EFD8DBFFEFFFFEFFFFFFFFDCDFEFEFFFFFFFFFFFCEFFEEFFFFFFDFFFFFEFFEFFFFDFFDFFFFFF>EFF
 
 ### <a name=stlfr>Appendix B : an example of stLFR reads</a>
 
-- the read1 of stLFR reads
+- Read1 of stLFR reads
 
-*The barcode information are appended at the header line. #xxx_xxx_xxx part is the barcode.*
+*The barcode information is appended at the header line. #xxx_xxx_xxx part is the barcode.*
 
 ```
 @CL100117953L1C001R001_1#844_1383_927/1 1       1
@@ -257,9 +258,9 @@ CACCGATCCACAAGAGGCCTTACAGAATGGGAGCCAGCGAGTTGGCGGAAGTCAAGAAGCAAGTCGATGAACAGTTATAG
 FFFFFFFFFFFFFFEF>FFFFFFFFFFEFFFFFFFFFFFFFFEFFFFFCEF>FF>GCAFBFFFFFF;7FEFFCFE9FAFFEFFFF<=;'8EFFFAF=FFF
 ```
 
-- the read2 of stLFR reads
+- Read2 of stLFR reads
 
-*The barcode information are appended at the header line. #xxx_xxx_xxx part is the barcode.*
+*The barcode information is appended at the header line. #xxx_xxx_xxx part is the barcode.*
 
 ```
 @CL100117953L1C001R001_1#844_1383_927/2 1       1
@@ -278,9 +279,9 @@ EFD8DBFFEFFFFEFFFFFFFFDCDFEFEFFFFFFFFFFFCEFFEEFFFFFFDFFFFFEFFEFFFFDFFDFFFFFF>EFF
 
 ### <a name=10x>Appendix C : an example of 10X reads</a>
 
-- the read1 of 10X reads
+- Read1 of 10X reads
 
-*The first 23bp of sequence is the 10X barcode at read1*
+*The first 23-bp sequence is the 10X barcode within read1*
 
 ```
 @ST-E0:0:SIMULATE:8:0:0:1 1:N:0:NAAGTGCT
@@ -301,9 +302,9 @@ GGAACTTAGCCCAGCTATCGAGNCGACGCGAGGCGATCCTAGGGAAAGCTCCGAAGGTAGGACCGCCTCGGCGCCATACA
 FFFFFFFFFFFFFFFFFFFFFF#FFCFGFGEFFFFFFFFF>FFFCEFGFEFFGCFFFFFFC@FDDFFFFF>FGFFFFFAFFEFFEFFEEFFF9FFFCFFFFFFGFE*FFEFF<FAEF3C'FF*
 ```
 
-- the read2 of 10X reads
+- Read2 of 10X reads
 
-*There is no barcode information at read 2*
+*There is no barcode information within read2*
 ```
 @ST-E0:0:SIMULATE:8:0:0:1 2:N:0:NAAGTGCT
 GGGTATTACGCTTCTCAGCGGCCCGAACCTGTATACATCGCCCGTGTCTTGTGTGTTTCCTGTCTCGCGAGCCTTCCACATACAGAGAGCTTAGAATCTC
