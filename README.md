@@ -281,7 +281,7 @@ EFD8DBFFEFFFFEFFFFFFFFDCDFEFEFFFFFFFFFFFCEFFEEFFFFFFDFFFFFEFFEFFFFDFFDFFFFFF>EFF
 
 - Read1 of 10X reads
 
-*The first 23-bp sequence is the 10X barcode within read1*
+*The first 23-bp sequence is the 16-bp-10X-barcode + 7-bp-adaptor within read1*
 
 ```
 @ST-E0:0:SIMULATE:8:0:0:1 1:N:0:NAAGTGCT
