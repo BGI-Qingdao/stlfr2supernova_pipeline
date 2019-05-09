@@ -41,6 +41,7 @@ while(<IN>)
     }
     $total+=$data[1];
     if ( $data[0] eq "barcode_str" 
+        || $data[0] eq "Barcode_seq"
         || $data[0] eq "0" 
         || $data[0] eq "0_0"
         || $data[0] eq "0_0_0" 
