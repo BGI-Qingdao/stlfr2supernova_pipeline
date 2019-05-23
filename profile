@@ -12,7 +12,7 @@ PROJECT_NAME="Human"        # supernova's --id
 THREADS=80                  # supernova's --localcores
 MEMORY=100 #GB              # supernova's --localmem
 MAX_READS=1200000000        # supernova's --maxreads #    for supernova version <= 2.10
-MINSIZE=1000                # supernova's --minsize
+MINSIZE=200                # supernova's --minsize
 #MAX_READS=2140000000 #for supernova 2.11
 
 #
