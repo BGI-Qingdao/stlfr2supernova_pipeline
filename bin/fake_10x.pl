@@ -29,9 +29,9 @@ $line_num=0;
 while(<IN1>)
 {
     $line_num++;
-    if (  $line_num %4000000 == 0)
+    if (  $line_num %1000000 == 0)
     {
-        $Mr= int($line_num / 4000000);
+        $Mr= int($line_num / 1000000);
         print "process $Mr (Mb) pair of reads now  \n";
         $|=1;
     }
@@ -89,7 +89,7 @@ while(<IN1>)
 
     print OUT2 "$seq 1:N:0:NAAGTGCT\nTTCACGCG\n\+\nAAFFFKKK\n";
 }
-
+print "Total $line_num pair reads and used $N pairs.\n";
 close(IN1);
 close(IN2);
 close(OUT);
