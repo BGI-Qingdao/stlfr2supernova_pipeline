@@ -19,7 +19,7 @@ ln -s $SUPERNOVA_R2  sample_S1_L001_R2_001.fastq.gz
 echo "supernova run step , this will take a long time ..."
 date
 tag=`date +_%m_%d_%H_%M_%S`
-supernova run --id=$PROJECT_NAME --maxreads=$MAX_READS  --fastqs=./ --localcores=$THREADS --localmem=$MEMORY --nopreflight >supernova_run_"$tag".log 2>supernova_run_"$tag".err || exit 1
+supernova run --id=$PROJECT_NAME --maxreads=$MAX_READS  --accept-extreme-coverage --fastqs=./ --localcores=$THREADS --localmem=$MEMORY --nopreflight >supernova_run_"$tag".log 2>supernova_run_"$tag".err || exit 1
 echo "supernova mkoutput"
 date
 tag=`date +_%m_%d_%H_%M_%S`
