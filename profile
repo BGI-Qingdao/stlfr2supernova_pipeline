@@ -5,14 +5,19 @@
 r1="L1.1.fq.gz L2.1.fq.gz"  # stLFR raw read1. use " " to seperate differnt lanes.
 r2="L1.2.fq.gz L2.2.fq.gz"  # stLFR raw read2. use " " to seperate differnt lanes.
 USE_FILTER="yes"            # yes or no. # use SOAPFilter or not
-BARCODE_FREQ_THRESHOLD=2    # if the number of read pairs sharing the same barcode is smaller then BARCODE_FREQ_THRESHOLD, then discard the barcode.
-MAP_RATIO=8                 # merge each MAP_RATIO stLFR barcodes to 1 10X barcode
+BARCODE_FREQ_THRESHOLD=1    # if the number of read pairs sharing the same barcode
+                            #    is smaller then BARCODE_FREQ_THRESHOLD, 
+                            #    then discard the barcode.
+                            # if BARCODE_FREQ_THRESHOLD=1 then use all data.
+                            # if BARCODE_FREQ_THRESHOLD=2 then barcode with only 1
+                            #    pair of reads will be discard.
+
 # below are baisc parameters for supernova assembler
 PROJECT_NAME="Human"        # supernova's --id
 THREADS=80                  # supernova's --localcores
 MEMORY=100 #GB              # supernova's --localmem
 MAX_READS=1200000000        # supernova's --maxreads #    for supernova version <= 2.10
-MINSIZE=200                # supernova's --minsize
+MINSIZE=200                 # supernova's --minsize
 #MAX_READS=2140000000 #for supernova 2.11
 
 #

@@ -40,7 +40,7 @@ if [[ $USE_FILTER == "yes" ]] ; then
     date
     tag=`date +_%m_%d_%H_%M_%S`
     echo "Generate $MERGE ..."
-    $SCRIPT_PATH/bin/merge_barcodes.pl $CLEAN_BARCODE_FREQ  $WL $MERGE $BQT $MAP_RATIO  1> merge_barcode_"$tag".log  2>merge_barcode_"$tag".err || exit 1
+    $SCRIPT_PATH/bin/merge_barcodes.pl $CLEAN_BARCODE_FREQ  $WL $MERGE $BQT  1> merge_barcode_"$tag".log  2>merge_barcode_"$tag".err || exit 1
     echo "Fake 10X data . this will take a long time ... "
     date
     tag=`date +_%m_%d_%H_%M_%S`
@@ -49,7 +49,7 @@ else
     date
     tag=`date +_%m_%d_%H_%M_%S`
     echo "Generate $MERGE ..."
-    $SCRIPT_PATH/bin/merge_barcodes.pl $BARCODE_FREQ  $WL $MERGE $BQT $MAP_RATIO  1> merge_barcode_"$tag".log  2>merge_barcode_"$tag".err || exit 1
+    $SCRIPT_PATH/bin/merge_barcodes.pl $BARCODE_FREQ  $WL $MERGE $BQT   1> merge_barcode_"$tag".log  2>merge_barcode_"$tag".err || exit 1
     echo "Fake 10X data . this will take a long time ... "
     date
     tag=`date +_%m_%d_%H_%M_%S`
