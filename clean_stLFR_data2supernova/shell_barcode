@@ -1,0 +1,1 @@
+gzip -dc split_reads.1.fq.gz.clean.gz | awk '!(NR%4-1)' | awk -F '[# |]' '{print$2}' | awk -F '/' '{print $1}' | sort | uniq -c | awk '{printf("%s\t%s\n",$2,$1);}' > barcode_clean_freq.txt
