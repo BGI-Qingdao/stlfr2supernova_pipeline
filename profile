@@ -23,15 +23,16 @@ MINSIZE=200                # supernova's --minsize
 # "SCRIPT_PATH" is the YOUR-INSTALL-DIR directory .
 SCRIPT_PATH="~/software/stlfr2supernova/"
 #"SUPERNOVA" is the executable path of supernova. Various versions are acceptable.
-SUPERNOVA="~/software/supernova-2.0.0/"  
-#"SOAP_FILTER is the executable path of SOAPFilter
-SOAP_FILTER="/hwfssz1/ST_OCEAN/USER/guolidong/stLFR/data_pipeline/SOAPfilter_v2.2.1/SOAPfilter_v2.2"
+SUPERNOVA="~/software/supernova-2.0.0/"
 
 #
 #   intermediate files that will be generated/needed below .
 #       DO NOT MODIFY BELOW
 # UNLESS YOU KNOW WHAT YOU ARE DOING.
 #
+
+#"SOAP_FILTER is the executable path of SOAPFilter
+SOAP_FILTER=$SCRIPT_PATH"/bin/SOAPfilter_v2.2"
 R1="tmp_r1.fq.gz"                   # the symbol-link concatenating different lanes.
 R2="tmp_r2.fq.gz"
 SPLIT="split_reads"                 # the prefix of splitted reads. split_reads.1.fq.gz & split_reads.2.fq.gz
