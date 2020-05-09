@@ -8,7 +8,7 @@ USE_FILTER="yes"            # yes or no. # use SOAPFilter or not
 BARCODE_FREQ_THRESHOLD=1    # if the number of read pairs sharing the same barcode
                             #    is smaller then BARCODE_FREQ_THRESHOLD, 
                             #    then discard the barcode.
-                            # if BARCODE_FREQ_THRESHOLD=1 then use all data.
+                            # if BARCODE_FREQ_THRESHOLD=1 then use all valid barcode.
                             # if BARCODE_FREQ_THRESHOLD=2 then barcode with only 1
                             #    pair of reads will be discard.
 
