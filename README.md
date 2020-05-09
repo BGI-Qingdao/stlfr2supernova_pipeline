@@ -15,6 +15,9 @@
     - [Structure of the files](#files)
     - [General usage](#usage)
     - [Profile file](#profile)
+    - [Other scenarios](#scenarios)
+         - [Start from stLFR reads which already split barcode](#start-stlfr)
+         - [Start from stLFR clean reads which already split barcode & remove PCR dup and filter adaptor](#start-stlfr-clean)
 - [Frequent Q & A](#use-cases)
 - [Miscellaneous](#misc)
 - [Reference](#ref)
@@ -149,13 +152,60 @@ SUPERNOVA_I1="read-I1_si-TTCACGCG_lane-001-chunk-001.fastq.gz" # the output 10X 
 SUPERNOVA_R2="read-R2_si-TTCACGCG_lane-001-chunk-001.fastq.gz" # the output 10X reads
 
 ```
+### <a name=scenarios>Other scenarios</a>
 
+*Sometime we do not start from stLFR raw reads but start from stLFR reads or even already cleaned stLFR reads. To use this pipeline in thoes scenarios, try below sugguestions.*
+
+#### <a name=start-stlfr>Start from stLFR reads which already split barcode</a>
+
+*If barcode_freq.txt is not exist, use the command in Q & A section to generate it*
+
+```
+mkdir work
+cd work
+ln your-path-to-reads/barcode_freq.txt ./ 
+ln your-path-to-reads/reads1.fq.gz split_reads.1.fq.gz
+ln your-path-to-reads/reads2.fq.gz split_reads.2.fq.gz
+cp your-path-to-stlfr2supernova/profile ./
+#
+# Edit profile , make sure SCRIPT_PATH & SUPERNOVA is valid
+#
+touch _step_0_end.txt # to avoid split reads step
+your-path-to-stlfr2supernova/run.sh >log 2>err
+#Done now
+```
+
+
+#### <a name=start-stlfr-clean>Start from stLFR clean reads which already split barcode & remove PCR dup and filter adaptor</a>
+
+##### A useful scrip in this scenario is here : https://github.com/BGI-Qingdao/stlfr2supernova_pipeline/tree/master/clean_stLFR_data2supernova
+
+##### Otherwise , try below commands 
+*If clean_barcode_freq.txt is not exist, use the command in Q & A section to generate it*
+```
+mkdir work
+cd work
+ln your-path-to-reads/clean_barcode_freq.txt ./ 
+ln your-path-to-reads/reads1.fq.gz split_reads.1.fq.gz.clean.gz
+ln your-path-to-reads/reads2.fq.gz split_reads.2.fq.gz.clean.gz
+cp your-path-to-stlfr2supernova/profile ./
+#
+# Edit profile , make sure SCRIPT_PATH & SUPERNOVA is valid
+#
+touch _step_0_end.txt # to avoid split reads step
+touch _step_1_end.txt # to avoid SOAPfilter step
+your-path-to-stlfr2supernova/run.sh >log 2>err
+#Done now
+```
 ## <a name=use-cases>Frequent Q & A</a>
 
 - If there is no file "barcode_freq.text" (or clean_barcode_freq.txt) in the directory "YourProjectRoot", then you can re-generate it with split_reads.1.fq.gz ( or split_reads.1.fq.gz.clean.gz) following the command below 
 
 ```
-gzip -dc split_reads.1.fq.gz | awk '!(NR%4-1)' | awk -F '[# |]' '{print$2}' | awk -F '/' '{print $1}' | sort | uniq -c | awk '{printf("%s\t%s\n",$2,$1);}' > barcode_freq.txt
+# to generate barcode_freq.txt
+gzip -dc split_reads.1.fq.gz | awk '!(NR%4-1)' | awk -F '[# |]' '{print$2}' | awk -F '/' '{print $1}' | sort | uniq -c | awk '{printf("%s\t%s\n",$2,$1);}' > barcode_freq.txt 
+#  to generate clean_barcode_freq.txt
+gzip -dc split_reads.1.fq.gz.clean.gz | awk '!(NR%4-1)' | awk -F '[# |]' '{print$2}' | awk -F '/' '{print $1}' | sort | uniq -c | awk '{printf("%s\t%s\n",$2,$1);}'  >clean_barcode_freq.txt
 ```
 
 - Why is the number of 10X reads smaller than that of the initial stLFR clean reads ?
