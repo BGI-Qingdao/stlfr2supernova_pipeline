@@ -2,7 +2,7 @@
   1.Download this folder<br>
   2.your reads must be compression（.gz）<br>
   3.use python3 to run clean_stlfr2supernova_pipline.py<br> 
-  `you will have this usage:<br> 
+  `you will have this usage`:<br> 
    >usage: clean_stlfr2supernova_pipline.py   [-h]   -r1   R1   -r2  -R2   -supernova<br>
    >optional arguments:<br>
   >>-h, --help            show this help message and exit<br>
