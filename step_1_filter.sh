@@ -5,7 +5,7 @@
 source ./profile
 echo "check files ..."
 date
-if [[ -z $ADAPTOR_F ||  -z $ADAPTOR_F ]] ; then 
+if [[ -z $ADAPTOR_F ||  -z $ADAPTOR_R ]] ; then 
     echo "ERROR : no adaptor sequence assigned in profile . exit ..."
     exit 1 
 fi
@@ -13,6 +13,7 @@ if [[ ! -f $SPLIT.1.fq.gz || ! -f $SPLIT.1.fq.gz ]] ; then
     echo "error : file $SPLIT.1.fq.gz or $SPLIT.2.fq.gz is not exsist !!! exit ..."
     exit 1;
 fi
+echo "NOTICE : use adaptor F : $ADAPTOR_F  R: $ADAPTOR_R"
 cp $SCRIPT_PATH/data/lane.lst ./
 
 echo "run SOAP_filter ... maybe long time ... "
