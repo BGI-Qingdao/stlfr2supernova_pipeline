@@ -9,8 +9,16 @@ USE_FILTER="yes"            # yes or no. # use SOAPFilter or not
 # 0. if USE_FILTER=no , then skip this.
 # 1. please double check your adaptor sequences by contact your raw data supplier.
 # 2. please assign the correct sequence to ADAPTOR_F & ADAPTOR_R if USE_FILTER=yes
+# 
+# an example of adaptor sequences.
 #ADAPTOR_F='AAGTCGGAGGCCAAGCGGTCTTAGGAAGACAA'           # SOAPfilter -F
 #ADAPTOR_R='AAGTCGGATCGTAGCCATGTCGTTCTGTGAGCCAAGGAGTT'  # SOAPfilter -R
+# other optional adaptor :
+#ADAPTOR_F='CTGTCTCTTATACACATCTTAGGAAGACAAGCACTGACGACATGA'
+#ADAPTOR_R='TCTGCTGAGTCGAGAACGTCTCTGTGAGCCAAGGAGTTGCTCTGG'
+# other optional adaptor :
+#ADAPTOR_F='CTGTCTCTTATACACATCTTAGGAAGACAAGCACTGACGACATGATCACCAAGGATCGCCATAGTCCATGCTAAAGGACGTCAGGAAGGGCGATCTCAGG'
+#ADAPTOR_R='TCTGCTGAGTCGAGAACGTCTCTGTGAGCCAAGGAGTTGCTCTGGCGACGGCCACGAAGCTAACAGCCAATCTGCGTAACAGCCAAACCTGAGATCGCCC'
 
 BARCODE_FREQ_THRESHOLD=1    # if the number of read pairs sharing the same barcode
                             #    is smaller then BARCODE_FREQ_THRESHOLD, 
