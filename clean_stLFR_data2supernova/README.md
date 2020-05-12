@@ -13,6 +13,7 @@
   >>-f F                  filter less X pair barcode reads(default = 2)<br>
   >>-m M                  mapping ratio (default=8)<br>
   >>-s S                  soft path<br>
+
 fill in the parameters to run.
 example:<br>
 python3 clean_stlfr2supernova_pipline.py -r1 stlfr_1.fq.gz -2 stlfr_2.fq.gz -supernova path/supernova/ -s path_to_this_program/folder -o log_out <br>
