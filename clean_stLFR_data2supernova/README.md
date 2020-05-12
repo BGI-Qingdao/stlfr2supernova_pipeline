@@ -2,9 +2,9 @@
   1.Download this folder<br>
   2.your reads must be compression（.gz）<br>
   3.use python3 to run clean_stlfr2supernova_pipline.py<br> 
-  you will have this usage:<br> 
-  >usage: clean_stlfr2supernova_pipline.py   [-h]   -r1   R1   -r2  -R2   -supernova<br>
-  >optional arguments:<br>
+  `you will have this usage:<br> 
+   >usage: clean_stlfr2supernova_pipline.py   [-h]   -r1   R1   -r2  -R2   -supernova<br>
+   >optional arguments:<br>
   >>-h, --help            show this help message and exit<br>
   >>-r1 R1                stlfr clean reads1<br>
   >>-r2 R2                stlfr clean reads2<br>
@@ -12,7 +12,7 @@
   >>-o O                  output folder(no exist before)<br>
   >>-f F                  filter less X pair barcode reads(default = 2)<br>
   >>-m M                  mapping ratio (default=8)<br>
-  >>-s S                  soft path<br>
+  >>-s S                  soft path<br>`
 
 fill in the parameters to run.
 example:<br>
