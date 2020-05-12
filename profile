@@ -4,7 +4,14 @@
 #
 r1="L1.1.fq.gz L2.1.fq.gz"  # stLFR raw read1. use " " to seperate differnt lanes.
 r2="L1.2.fq.gz L2.2.fq.gz"  # stLFR raw read2. use " " to seperate differnt lanes.
+# filter settings
 USE_FILTER="yes"            # yes or no. # use SOAPFilter or not
+# 0. if USE_FILTER=no , then skip this.
+# 1. please double check your adaptor sequences by contact your raw data supplier.
+# 2. please assign the correct sequence to ADAPTOR_F & ADAPTOR_R if USE_FILTER=yes
+#ADAPTOR_F='AAGTCGGAGGCCAAGCGGTCTTAGGAAGACAA'           # SOAPfilter -F
+#ADAPTOR_R='AAGTCGGATCGTAGCCATGTCGTTCTGTGAGCCAAGGAGTT'  # SOAPfilter -R
+
 BARCODE_FREQ_THRESHOLD=1    # if the number of read pairs sharing the same barcode
                             #    is smaller then BARCODE_FREQ_THRESHOLD, 
                             #    then discard the barcode.
