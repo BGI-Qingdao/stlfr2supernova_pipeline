@@ -16,8 +16,9 @@
     - [General usage](#usage)
     - [Profile file](#profile)
     - [Other scenarios](#scenarios)
-         - [Start from stLFR reads which already split barcode](#start-stlfr)
-         - [Start from stLFR clean reads which already split barcode & remove PCR dup and filter adaptor](#start-stlfr-clean)
+         - [How to start from stLFR reads which already split barcode](#start-stlfr)
+         - [How to start from stLFR clean reads which already split barcode & remove PCR dup and filter adaptor](#start-stlfr-clean)
+         - [How to get 10XG reads from stLFR raw reads without run supernova](#fake-only)
 - [Frequent Q & A](#use-cases)
 - [Miscellaneous](#misc)
 - [Reference](#ref)
@@ -217,6 +218,14 @@ touch _step_0_end.txt # to avoid split reads step
 touch _step_1_end.txt # to avoid SOAPfilter step
 your-path-to-stlfr2supernova/run.sh >log 2>err
 #Done now
+```
+
+#### <a name=fake-only>How to get 1X Genomics format without run supernova</a>
+
+```
+touch _step_3_end.txt #stop run supernova
+
+# other step follow full pipeline 
 ```
 ## <a name=use-cases>Frequent Q & A</a>
 
