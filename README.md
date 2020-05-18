@@ -220,7 +220,7 @@ your-path-to-stlfr2supernova/run.sh >log 2>err
 #Done now
 ```
 
-#### <a name=fake-only>How to get 1X Genomics format without run supernova</a>
+#### <a name=fake-only>How to get 10X Genomics format without run supernova</a>
 
 ```
 touch _step_3_end.txt #stop run supernova
