@@ -248,7 +248,7 @@ gzip -dc split_reads.1.fq.gz.clean.gz | awk '!(NR%4-1)' | awk -F '[# |]' '{print
 - How to get barcode.fq.gz ( the 10XG format ) from stlfr reads ? 
 
 ```
-perl ./tools/stlfr2barcode_fq_gz.pl  split_reads.1.fq.gz split_reads.2.fq.gz | gzip - >barcode.fq.gz
+perl ./tools/stlfr2barcode_fq_gz.pl  split_reads.1.fq.gz split_reads.2.fq.gz | gzip - >barcode.fastq.gz
 ```
 
 ## <a name=misc>Miscellaneous</a>
