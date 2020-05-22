@@ -245,7 +245,7 @@ gzip -dc split_reads.1.fq.gz.clean.gz | awk '!(NR%4-1)' | awk -F '[# |]' '{print
         - stLFR has ~1.8 billion unique barcodes
         - 10X has 4,792,320 unique barcodes
 
-- How to get barcode.fq.gz ( the 10XG format ) from stlfr reads ? 
+- How to get barcode.fastq.gz ( the 10XG format ) from stlfr reads ? 
 
 ```
 perl ./tools/stlfr2barcode_fq_gz.pl  split_reads.1.fq.gz split_reads.2.fq.gz | gzip - >barcode.fastq.gz
