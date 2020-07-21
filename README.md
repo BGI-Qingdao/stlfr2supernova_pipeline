@@ -233,9 +233,11 @@ touch _step_3_end.txt #stop run supernova
 
 ```
 # to generate barcode_freq.txt
-gzip -dc split_reads.1.fq.gz | awk '!(NR%4-1)' | awk -F '[# |]' '{print$2}' | awk -F '/' '{print $1}' | sort | uniq -c | awk '{printf("%s\t%s\n",$2,$1);}' > barcode_freq.txt 
+gzip -dc split_reads.1.fq.gz |  awk -F '#|/' '{if(NR%4==1&&NF>1)t[$2]+=1}END{for(x in t ) printf("%s\t%s\n",x,t[x]);}' > barcode_freq.txt 
+
 #  to generate clean_barcode_freq.txt
-gzip -dc split_reads.1.fq.gz.clean.gz | awk '!(NR%4-1)' | awk -F '[# |]' '{print$2}' | awk -F '/' '{print $1}' | sort | uniq -c | awk '{printf("%s\t%s\n",$2,$1);}'  >clean_barcode_freq.txt
+gzip -dc split_reads.1.fq.gz.clean.gz |  awk -F '#|/' '{if(NR%4==1&&NF>1)t[$2]+=1}END{for(x in t ) printf("%s\t%s\n",x,t[x]);}'  >clean_barcode_freq.txt
+
 ```
 
 - Why is the number of 10X reads smaller than that of the initial stLFR clean reads ?
