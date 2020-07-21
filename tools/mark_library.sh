@@ -23,5 +23,5 @@ fi
 if [[ ${input_file: -3} == ".gz" ]] ; then
     gzip -dc $input_file | awk -F '#|/' -v lib_id=$lib_id '{if(NR%4==1&&NF>1&&$2!="0_0_0"){printf("%s#lib%s_%s/%s\n",$1,lib_id,$2,$3);}else print $0; }' -
 else
-    awk -F '#|/' -v lib_id=$lib_id '{if(NR%4==1&&NF>1&&$2!="0_0_0"){printf("%s#Lib%s_%s/%s\n",$1,lib_id,$2,$3);}else print $0; }' input_file
+    awk -F '#|/' -v lib_id=$lib_id '{if(NR%4==1&&NF>1&&$2!="0_0_0"){printf("%s#Lib%s_%s/%s\n",$1,lib_id,$2,$3);}else print $0; }' $input_file
 fi
