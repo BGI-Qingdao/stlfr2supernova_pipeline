@@ -176,11 +176,11 @@ SUPERNOVA_R2="read-R2_si-TTCACGCG_lane-001-chunk-001.fastq.gz" # the output 10X 
 ```
 ### <a name=scenarios>Other scenarios</a>
 
-*Sometime we do not start from stLFR raw reads but start from stLFR reads or even already cleaned stLFR reads. To use this pipeline in thoes scenarios, try below sugguestions.*
+*If you have already finished the data preprocess and begin the downstream analysis with stLFR reads with barcode IDs or cleaned stLFR reads, then please use this pipeline*
 
-#### <a name=start-stlfr>Start from stLFR reads which already split barcode</a>
+#### <a name=start-stlfr>StLFR reads with barcode ID in read names instead of sequences</a>
 
-*If barcode_freq.txt is not exist, use the command in Q & A section to generate it*
+*If barcode_freq.txt does not exist, use the command in Q & A section to generate it*
 
 ```
 mkdir work
@@ -198,12 +198,12 @@ your-path-to-stlfr2supernova/run.sh >log 2>err
 ```
 
 
-#### <a name=start-stlfr-clean>Start from stLFR clean reads which already split barcode & remove PCR dup and filter adaptor</a>
+#### <a name=start-stlfr-clean>StLFR clean reads with barcode ID in read names & PCR dup and adaptor removed</a>
 
 ##### A useful scrip in this scenario is here : https://github.com/BGI-Qingdao/stlfr2supernova_pipeline/tree/master/clean_stLFR_data2supernova
 
-##### Otherwise , try below commands 
-*If clean_barcode_freq.txt is not exist, use the command in Q & A section to generate it*
+##### Otherwise, try commands below 
+*If clean_barcode_freq.txt does not exist, use the command in Q & A section to generate it*
 ```
 mkdir work
 cd work
