@@ -22,6 +22,7 @@ tag=`date +_%m_%d_%H_%M_%S`
 $SOAP_FILTER -q 33 -t $THREADS -y -F $ADAPTOR_F -R $ADAPTOR_R  -p -M 2 -f -1 -Q 10 lane.lst stat.txt >SOAPfilter_"$tag".log 2>SOAPfilter_"$tag".err || exit 1
 echo "re-generate new barcode.freq from clean data .. may cost hours ..."
 
-gzip -dc $SPLIT.1.fq.gz.clean.gz | awk '!(NR%4-1)' | awk -F '[# |]' '{print$2}' | awk -F '/' '{print $1}' | sort | uniq -c | awk '{printf("%s\t%s\n",$2,$1);}' > $CLEAN_BARCODE_FREQ
+#gzip -dc $SPLIT.1.fq.gz.clean.gz | awk '!(NR%4-1)' | awk -F '[# |]' '{print$2}' | awk -F '/' '{print $1}' | sort | uniq -c | awk '{printf("%s\t%s\n",$2,$1);}' > $CLEAN_BARCODE_FREQ
+gzip -dc $SPLIT.1.fq.gz.clean.gz | awk '!(NR%4-1)' | awk -F '[# |]' '{print$2}' | awk -F '/' '{print $1}' |awk '{t[$1]+=1;}END{for(x in t) printf("%s\t%s\n",x,t[x]);}' > $CLEAN_BARCODE_FREQ
 echo "step 1 done ..."
 date
