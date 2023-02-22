@@ -47,13 +47,14 @@ os.system('/bin/sh ' + args.s + 'shell_barcode')
 # generate barcode mapping table     
 os.system('perl ' + args.s + 'merge_barcodes.pl barcode_clean_freq.txt ' + wl + ' merge.txt ' + str(filter_num) + ' ' + str(mapratio_num) +' 1> merge_barcode.log  2>merge_barcode.err')
 # convert file format     
-os.system('perl ' + args.s + 'fake_10x.pl ' + args.r1 + ' ' + args.r2 + ' merge.txt >fake_10X.log 2>fake_10X.err')
+os.system('perl ' + args.s + 'fake_10x.pl ' + split_reads.1.fq.gz.clean.gz + ' ' + split_reads.2.fq.gz.clean.gz + ' merge.txt >fake_10X.log 2>fake_10X.err')
 # rename fastqs 
-os.system('mv read-I1_si-TTCACGCG_lane-001-chunk-001.fastq.gz  sample_S1_L001_I1_001.fastq.gz')
-os.system('mv read-R1_si-TTCACGCG_lane-001-chunk-001.fastq.gz  sample_S1_L001_R1_001.fastq.gz')
-os.system('mv read-R2_si-TTCACGCG_lane-001-chunk-001.fastq.gz  sample_S1_L001_R2_001.fastq.gz')
+os.system('mkdir -p supernova_in')
+os.system('mv read-I1_si-TTCACGCG_lane-001-chunk-001.fastq.gz  supernova_in/sample_S1_L001_I1_001.fastq.gz')
+os.system('mv read-R1_si-TTCACGCG_lane-001-chunk-001.fastq.gz  supernova_in/sample_S1_L001_R1_001.fastq.gz')
+os.system('mv read-R2_si-TTCACGCG_lane-001-chunk-001.fastq.gz  supernova_in/sample_S1_L001_R2_001.fastq.gz')
 print('fake over')
 # run supernova 
-os.system(args.supernova + 'supernova run --id=supernova_out --maxreads=2140000000  --fastqs=./ --accept-extreme-coverage --localcores=8 --localmem=500 --nopreflight 1>_log 2>_err')
+os.system(args.supernova + 'supernova run --id=supernova_out --maxreads=2140000000  --fastqs=./supernova_in/ --accept-extreme-coverage --localcores=8 --localmem=500 --nopreflight 1>_log 2>_err')
 os.system(args.supernova + 'supernova mkoutput --style=pseudohap --asmdir=supernova_out/outs/assembly --outprefix=xiaoqiang_supernova_result')
 print('pip line over')
