@@ -35,8 +35,8 @@ if args.o:
     # switch into output folder now
     os.chdir(args.o)
 # link input reads
-os.system('ln -s ' + r1path + ' split_reads.1.fq.gz.clean.gz')
-os.system('ln -s ' + r2path + ' split_reads.1.fq.gz.clean.gz')
+os.system('ln -sf ' + r1path + ' split_reads.1.fq.gz.clean.gz')
+os.system('ln -sf ' + r2path + ' split_reads.2.fq.gz.clean.gz')
 # whitelist in supernova folder
 wl = args.supernova + '/supernova-cs/*/tenkit/lib/python/tenkit/barcodes/4M-with-alts-february-2016.txt'
 ###############################################
