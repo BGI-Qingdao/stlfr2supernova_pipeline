@@ -70,8 +70,8 @@ os.system('mv read-R2_si-TTCACGCG_lane-001-chunk-001.fastq.gz  supernova_in/samp
 print('fake over')
 if os.path.exists('./supernova_out'):
     os.system('mkdir -p prev_run')
-    os.system('mv supernova_out prev_run/supernova_out'+int(time.time())+' ')
+    os.system('mv supernova_out prev_run/supernova_out'+str(int(time.time()))+' ')
 # run supernova 
-os.system(args.supernova + 'supernova run --id=supernova_out --maxreads=2140000000  --fastqs=./supernova_in/ --accept-extreme-coverage --localcores='+ CPU +' --localmem=' + MEM + ' --nopreflight 1>_log 2>_err')
+os.system(args.supernova + 'supernova run --id=supernova_out --maxreads=2140000000  --fastqs=./supernova_in/ --accept-extreme-coverage --localcores='+ str(int(CPU)) +' --localmem=' + str(int(MEM)) + ' --nopreflight 1>_log 2>_err')
 os.system(args.supernova + 'supernova mkoutput --style=pseudohap --asmdir=supernova_out/outs/assembly --outprefix=xiaoqiang_supernova_result')
 print('pip line over')
