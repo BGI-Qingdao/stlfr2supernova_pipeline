@@ -13,6 +13,8 @@
   >>`-f F                  filter less X pair barcode reads(default = 2)`<br>
   >>`-m M                  mapping ratio (default=8)`<br>
   >>`-s S                  soft path`<br>
+  >>`-M memory(GB)         memory for supernova, default 100`<br>
+  >>`-t threads            threads for supernova, default 8`<br>
 
 fill in the parameters to run.
 example:<br>
