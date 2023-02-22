@@ -47,7 +47,7 @@ os.system('/bin/sh ' + args.s + 'shell_barcode')
 # generate barcode mapping table     
 os.system('perl ' + args.s + 'merge_barcodes.pl barcode_clean_freq.txt ' + wl + ' merge.txt ' + str(filter_num) + ' ' + str(mapratio_num) +' 1> merge_barcode.log  2>merge_barcode.err')
 # convert file format     
-os.system('perl ' + args.s + 'fake_10x.pl ' + split_reads.1.fq.gz.clean.gz + ' ' + split_reads.2.fq.gz.clean.gz + ' merge.txt >fake_10X.log 2>fake_10X.err')
+os.system('perl ' + args.s + 'fake_10x.pl  split_reads.1.fq.gz.clean.gz  split_reads.2.fq.gz.clean.gz  merge.txt ' >fake_10X.log 2>fake_10X.err')
 # rename fastqs 
 os.system('mkdir -p supernova_in')
 os.system('mv read-I1_si-TTCACGCG_lane-001-chunk-001.fastq.gz  supernova_in/sample_S1_L001_I1_001.fastq.gz')
